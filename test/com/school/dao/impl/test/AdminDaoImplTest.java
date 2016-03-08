@@ -36,16 +36,12 @@ public class AdminDaoImplTest {
 
 	@Mock
 	SubjectDao subjectDao;
-	
 	@Mock
 	AdminDao adminDao;
-	
 	@Mock
 	ProfessorDao profDao;
-	
 	@Mock
 	StudentDao studentDao;
-	
 	@Mock
 	SubjectRequestDao subjectRequestDao;
 
@@ -82,21 +78,14 @@ public class AdminDaoImplTest {
 		doReturn(listOfProfessors).when(profDao).getAll();
 		doReturn(listOfRequests).when(subjectRequestDao).getAll();
 		
-		mockMvc.perform(post("/admin, Principal, Model"));
-			   //.andExpect(view().name("admin"));
-		
 	}
 	
 	@Test
 	public void acceptSubjectRequest() throws Exception {
 		
 		doReturn(subjectRequest).when(subjectRequestDao).getSubjectRequestById(SUBJECT_REQUEST_ID);
-		
 		studentDao.addSubjectToStudentByRequestId(SUBJECT_REQUEST_ID);
 		subjectRequestDao.deleteSubjectRequest(subjectRequest);
-		
-		mockMvc.perform(post("/acceptSubjectRequest/{subjectRequestId}", SUBJECT_REQUEST_ID));
-			   //.andExpect(view().name("admin"));
 	}
 	
 	@Test
@@ -105,16 +94,6 @@ public class AdminDaoImplTest {
 		doReturn(subjectRequest).when(subjectRequestDao).getSubjectRequestById(SUBJECT_ID);
 		studentDao.removeSubjectRequestByRequestId(SUBJECT_REQUEST_ID);
 		subjectRequestDao.deleteSubjectRequest(subjectRequest);
-		
-		mockMvc.perform(post("/declineSubjectRequest/{subjectRequestId}", SUBJECT_REQUEST_ID));
-		
-	}
-	
-	@Test
-	public void addingSubject() throws Exception {
-		
-		mockMvc.perform(post("/addingSubject"))
-			   .andExpect(view().name("addSubject"));
 	}
 	
 	@Test
@@ -129,10 +108,6 @@ public class AdminDaoImplTest {
 		
 		doReturn(listOfProfessors).when(profDao).getAllProfessorsWithSubjects();
 		doReturn(listOfSubjects).when(subjectDao).getAll();
-		
-		mockMvc.perform(post("/addSubjectToProf"))
-			   .andExpect(view().name("addSubjectsToProfessor"));
-		
 	}
 	
 	@Test
@@ -140,9 +115,6 @@ public class AdminDaoImplTest {
 		
 		profDao.addSubjectToProfessorById(PROFESSOR_ID, subject);
 		subjectDao.addProfessorToSubjectById(professor, SUBJECT_ID);
-		
-		mockMvc.perform(post("/addSubjectToProfessor, params=professor && subject", PROFESSOR_ID, SUBJECT_ID));
-			   //.andExpect(view().name("admin"));
 	}
 	
 }
