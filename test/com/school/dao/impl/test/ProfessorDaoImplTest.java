@@ -18,7 +18,7 @@ import com.school.dao.interfaces.ProfessorDao;
 public class ProfessorDaoImplTest {
 	
 	public static final Long PROFESSOR_ID = 1L;
-	public static final String USERNAME = "name";
+	public static final String USERNAME = "username";
 	
 	@Mock
 	ProfessorDao profDao;

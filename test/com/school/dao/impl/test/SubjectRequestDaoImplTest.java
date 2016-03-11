@@ -18,11 +18,7 @@ import com.school.dao.impl.SubjectRequestDaoImpl;
 
 public class SubjectRequestDaoImplTest {
 
-	public static final Long STUDENT_ID = 1L;
 	public static final Long SUBJECT_ID = 3L;
-	public static final Long REQUEST_ID = 5L;
-	public static final Integer GRADE_VALUE = 10;
-	public static final String USERNAME = "name";
 
 	@Mock
 	StudentDaoImpl studentDao;
