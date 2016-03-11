@@ -1,6 +1,6 @@
 package com.school.dao.interfaces;
 
-import java.util.List;
+//import java.util.List;
 
 import com.school.beans_model.Absence;
 import com.school.beans_model.Grade;
@@ -48,6 +48,6 @@ public interface StudentDao extends GenericDao<Student, Long> {
 
 	//Student getStudentWithAbsencesBySubject(Subject subject);
 
-	List<Grade> getListOfGradesBySubjectAndStudent(Subject subject, Student student);
+	//List<Grade> getListOfGradesBySubjectAndStudent(Subject subject, Student student);
 	
 }

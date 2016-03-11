@@ -1,10 +1,7 @@
 package com.school.dao.impl;
 
-import java.util.List;
-
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -93,27 +90,6 @@ public class StudentDaoImpl extends GenericDaoImpl<Student, Long> implements Stu
 		Hibernate.initialize(student.getStudentGrades());
 		return student;
 	}
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Grade> getListOfGradesBySubjectAndStudent(Subject subject, Student student) {
-		
-		Query query = getSession().createQuery("FROM Grades WHERE student=:studentId AND subject=:subjectId");
-		query.setLong("studentId", student.getId());
-		query.setLong("subjectId", subject.getId());
-		List<Grade> listOfGrades = query.list();
-		
-		return listOfGrades;
-	}
-	
-//	@Override
-//	public Student getStudentWithAbsencesBySubject(Subject subject) {
-//		Student student = getSession().get(Student.class, subject.getId());
-//		if (student != null) {
-//			//student.getStudentAbsences();
-//			Hibernate.initialize(student.getStudentAbsences());
-//		}
-//		return student;
-//	}
 	
 	@Override
 	public Student getStudentWithSubjectsAndGradesById(Long studentId) {
