@@ -4,7 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<link type="text/css" rel="stylesheet" href="<c:url value="/resources/css/style1.css" />" />
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <title>Student Account</title>
 </head>
 <body>
@@ -42,7 +45,7 @@
 				<a href="${url}">Send request for this subject</a></p>
 	</c:forEach>
 	
-	<p><a href="<spring:url value="/logout"/>">Log out</a></p>
+	<p><a href="<c:url value="/logout" />">Log Out</a></p>
 	
 </body>
 </html>

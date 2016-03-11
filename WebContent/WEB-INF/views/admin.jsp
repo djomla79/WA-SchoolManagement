@@ -5,18 +5,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<link type="text/css" rel="stylesheet" href="<c:url value="/resources/css/style1.css" />" />
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<title>Administrator Page</title>
 </head>
 <body>
     
-<%--     <jsp:include page="/WEB-INF/views/fragments/navbar.jsp" /> --%>
+    <jsp:include page="/WEB-INF/views/fragments/navbar.jsp" />
 		 
 		<h3>Welcome Administrator <c:out value="${admin.name}"/> <c:out value="${admin.lastName}"/></h3>
 	
 		<p><a href="<spring:url value="/registerUser"/>">User Registration</a></p>
 		<p><a href="<spring:url value="/addingSubject"/>">Add a new Subject</a></p>
 		<p><a href="<spring:url value="/addSubjectToProf"/>">Add a Subject to Professor</a></p>
-		<p><a href="<spring:url value="/logout"/>">Log out</a></p>
+		<p><a href="<c:url value="/logout" />">Log Out</a></p>
 
 		<h4>Professors</h4>
 		

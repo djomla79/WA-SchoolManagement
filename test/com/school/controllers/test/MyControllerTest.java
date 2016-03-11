@@ -1,11 +1,12 @@
 package com.school.controllers.test;
 
-import static org.hamcrest.Matchers.notNullValue;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.doReturn;
+import static org.hamcrest.Matchers.*;
+import static org.mockito.Matchers.*;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
@@ -29,7 +30,7 @@ import com.school.dao.interfaces.ProfessorDao;
 import com.school.dao.interfaces.StudentDao;
 
 @RunWith(MockitoJUnitRunner.class)
-@ContextConfiguration(classes={ RootConfig.class })
+@ContextConfiguration(classes={RootConfig.class})
 public class MyControllerTest {
 	
 	@Mock
@@ -59,35 +60,36 @@ public class MyControllerTest {
 	@Test
 	public void homePage() throws Exception {
 		mockMvc.perform(get("/"))
-			.andExpect(view().name("home"));
+			   .andExpect(status().isOk())
+			   .andExpect(view().name("home"));
 	}
 	
 	@Test
 	public void registrationPage() throws Exception {
 		mockMvc.perform(get("/registerUser"))
-			.andExpect(view().name("registrationPage"))
-			.andExpect(model().attribute("user", notNullValue()));
+			   .andExpect(view().name("registrationPage"))
+			   .andExpect(model().attribute("user", notNullValue()));
 	}
 	
 	@Test
 	public void registerAdmin() throws Exception {
 		doReturn(admin).when(adminDao).saveAdmin((Admin) any());
 		mockMvc.perform(post("/registerAdmin"))
-			.andExpect(view().name("redirect:/admin"));
+			   .andExpect(view().name("redirect:/admin"));
 	}
 	
 	@Test
 	public void registerProfessor() throws Exception {
 		doReturn(professor).when(profDao).saveProfessor((Professor) any());
 		mockMvc.perform(post("/registerProfessor"))
-			.andExpect(view().name("redirect:/admin"));
+			   .andExpect(view().name("redirect:/admin"));
 	}
 	
 	@Test
 	public void registerStudent() throws Exception {
 		doReturn(student).when(studentDao).saveStudent((Student) any());
 		mockMvc.perform(post("/registerStudent"))
-			.andExpect(view().name("redirect:/admin"));
+			   .andExpect(view().name("redirect:/admin"));
 	}
 	
 }

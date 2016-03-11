@@ -40,6 +40,17 @@ public class StudentController {
 		
 		return "studentAccount";
 	}
+//	@RequestMapping(value="/accountStudent/{studentId}")
+//	public String studentAccount(@PathVariable Long studentId, Model model) {
+//		
+//		Student student = studentDao.getStudentWithSubjectsAndGradesById(studentId);
+//		List<Subject> allSubjects = (List<Subject>) subjectDao.getAll();
+//		
+//		model.addAttribute("student", student);
+//		model.addAttribute("allSubjects", allSubjects);
+//		
+//		return "studentAccount";
+//	}
 	
 	@RequestMapping(value="/getSubjectWithStudents/{subjectId}")
 	public String getSubjectWithStudents(@PathVariable Long subjectId, Model model) {

@@ -8,5 +8,7 @@ public interface AdminDao extends GenericDao<Admin, Long> {
 	Admin saveAdmin(Admin admin);
 
 	Admin getAdminByUsername(String username);
+
+	Admin getAdminById(Long adminId);
 	
 }

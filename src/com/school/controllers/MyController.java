@@ -40,17 +40,30 @@ public class MyController {
 		return "home";
 	}
 	
-//	@RequestMapping("/login")
-//	public String showLogin() {
-//		return "login";
+//	@RequestMapping({"/", "/home"})
+//	public String home(Authentication auth, Principal principal, HttpSession session) {
+//		
+//		if(principal != null) {
+//			User user = userDao.getUserByUsername(principal.getName());
+//			session.setAttribute("user", user);
+//			if(auth != null) {
+//				String authority = auth.getAuthorities().toString();
+//				if (authority.equals("[ADMIN]")) {
+//					session.setAttribute("admin", user);
+//				} else if (authority.equals("[PROFESSOR]")) {
+//					session.setAttribute("professor", user);
+//				} else if (authority.equals("[STUDENT]")) {
+//					session.setAttribute("student", user);
+//				}
+//			}
+//		}
+//		return "home";
 //	}
-//	
-//	@RequestMapping(value="/login", method=RequestMethod.POST)
-//    public String loginPage(Model model, @RequestParam(value="username", required=true) String username) {
-//		User user = userDao.getUserByUsername(username);
-//        model.addAttribute("user", user);
-//        return "login";
-//	}
+	
+	@RequestMapping("/login")
+	public String showLogin() {
+		return "login";
+	}
 	
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String logoutPage(HttpServletRequest request, HttpServletResponse response) {

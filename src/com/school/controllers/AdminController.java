@@ -40,12 +40,7 @@ public class AdminController {
 	@Autowired
 	private SubjectRequestDao subjectRequestDao;
 	
-//	@RequestMapping(value="/admin", method=RequestMethod.GET)
-//	public String admin() {
-//		return "admin";
-//	}
 	
-	//@RequestMapping(value="/admin", method=RequestMethod.POST)
 	@RequestMapping("/admin")
 	public String adminPage(Principal principal, Model model) {
 		
@@ -60,6 +55,20 @@ public class AdminController {
 		
 		return "admin";
 	}
+//	@RequestMapping(value="/admin/{adminId}")
+//	public String adminPage(@PathVariable Long adminId, Model model) {
+//		
+//		Admin admin = adminDao.getAdminById(adminId);
+//		model.addAttribute("admin", admin);
+//		
+//		List<Professor> professors =  (List<Professor>) profDao.getAll();
+//		model.addAttribute("professors", professors);
+//		
+//		List<SubjectRequest> subjectRequests = (List<SubjectRequest>) subjectRequestDao.getAll();
+//		model.addAttribute("subjectRequests", subjectRequests);
+//		
+//		return "admin";
+//	}
 	
 	@RequestMapping("/addingSubject")
 	public String addSubject(@ModelAttribute("subject") Subject subject) {

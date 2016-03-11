@@ -29,5 +29,10 @@ public class AdminDaoImpl extends GenericDaoImpl<Admin, Long> implements AdminDa
 		
 		return (Admin) criteria.uniqueResult();
 	}
+	
+	@Override
+	public Admin getAdminById(Long adminId) {
+		return (Admin) getSession().get(Admin.class, adminId);
+	}
 
 }

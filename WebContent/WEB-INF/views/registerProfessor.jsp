@@ -6,11 +6,9 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<%-- 	<link href="<spring:url value="/data/css/style1.css"/>" rel="stylesheet"> --%>
-<%-- 	<link href="<spring:url value="/resources/js/bootstrap.min.js"/>" rel="stylesheet"> --%>
-<%-- 	<link href="<spring:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet"> --%>
-<%-- 	<script src="<spring:url value="/resources/js/jquery.js"/>"></script> --%>
-<%-- 	<script src="<spring:url value="/resources/js/bootstrap.js"/>"></script> --%>
+	<link type="text/css" rel="stylesheet" href="<c:url value="/resources/css/style1.css" />" />
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<title>Register Professor Page</title>
 </head>
 <body>

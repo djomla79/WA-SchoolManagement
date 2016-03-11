@@ -3,24 +3,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%-- 	<link href="<spring:url value="/resources/css/bootstrap.css"/>" rel="stylesheet"> --%>
-<%-- 	<link href="<spring:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet"> --%>
-<%-- 	<link href="<spring:url value="/resources/css/style1.css"/>" rel="stylesheet"> --%>
+	<link type="text/css" rel="stylesheet" href="<c:url value="/resources/css/style1.css" />" />
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<title>Login Page</title>
 </head>
-<body onload='document.loginForm.username.focus();'>
+<body onload='document.f.username.focus();'>
 
-	<jsp:include page="/WEB-INF/views/fragments/navbar.jsp" />
+<%-- 	<jsp:include page="/WEB-INF/views/fragments/navbar.jsp" /> --%>
 	
 	<div class="row">
-         <div class="well"><h2>Enter your username and password</h2>
-         </div>
+         <div class="well"><h3>Enter your username and password</h3></div>
      </div>
 	
     <div class="container" >
       <div class="container1">
       		
-      		<form name='loginForm' action='${pageContext.request.contextPath}/login' method='post'>
+      		<form name='f' action='${pageContext.request.contextPath}/login' method='post'>
 
 				<div class="row">
 
@@ -32,7 +31,7 @@
 					
 				</div>
 				
-				<br/><button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button> 
+				<br/><input name="submit" type="submit" value="Login" class="btn btn-info btn-block" />
 				 
 			</form>
 
