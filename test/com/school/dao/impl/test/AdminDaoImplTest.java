@@ -1,7 +1,7 @@
 package com.school.dao.impl.test;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -38,18 +38,21 @@ public class AdminDaoImplTest {
 	public void saveAdmin() throws Exception {
 		doReturn(admin1).when(adminDao).saveAdmin(admin);
 		assertEquals(admin1, adminDao.saveAdmin(admin));
+		verify(adminDao).saveAdmin(admin);
 	}
 	
 	@Test
 	public void getAdminByUsername() throws Exception {
 		doReturn(admin1).when(adminDao).getAdminByUsername(USERNAME);
 		assertEquals(admin1, adminDao.getAdminByUsername(USERNAME));
+		verify(adminDao).getAdminByUsername(USERNAME);
 	}
 	
 	@Test
 	public void getAdminById() throws Exception {
 		doReturn(admin1).when(adminDao).getAdminById(ADMIN_ID);
 		assertEquals(admin1, adminDao.getAdminById(ADMIN_ID));
+		verify(adminDao).getAdminById(ADMIN_ID);
 	}
 	
 }

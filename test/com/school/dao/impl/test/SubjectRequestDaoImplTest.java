@@ -1,19 +1,16 @@
 package com.school.dao.impl.test;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.*;
 
 import java.util.Arrays;
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.school.beans_model.Student;
-import com.school.beans_model.Subject;
 import com.school.beans_model.SubjectRequest;
 import com.school.dao.impl.StudentDaoImpl;
 import com.school.dao.impl.SubjectDaoImpl;
@@ -33,10 +30,6 @@ public class SubjectRequestDaoImplTest {
 	SubjectDaoImpl subjectDao;
 	@Mock
 	SubjectRequestDaoImpl requestDao;
-	@Mock
-	Subject subjectMock;
-	@Mock
-	Student studentMock;
 	
 	private SubjectRequest request;
 	private SubjectRequest request1;
@@ -54,25 +47,27 @@ public class SubjectRequestDaoImplTest {
 	public void saveSubjectRequest() throws Exception {
 		doReturn(request1).when(requestDao).saveSubjectRequest(request);
 		assertEquals(request1, requestDao.saveSubjectRequest(request));
+		verify(requestDao).saveSubjectRequest(request);
 	}
 	
 	@Test
 	public void getSubjectRequestById() throws Exception {
 		doReturn(request).when(requestDao).get(SUBJECT_ID);
 		assertEquals(request, requestDao.get(SUBJECT_ID));
+		verify(requestDao).get(SUBJECT_ID);
 	}
 	
 	@Test
 	public void deleteSubjectRequest() throws Exception {
 		requestDao.deleteSubjectRequest(request);
+		verify(requestDao).deleteSubjectRequest(request);
 	}
 	
-	@SuppressWarnings("unchecked")
-	@Test(expected=NullPointerException.class)
+	@Test
 	public void getAllSubjectRequests() throws Exception {
-		Criteria criteria = requestDao.getSession().createCriteria(SubjectRequest.class);
-		listOfRequests = criteria.list();
+		doReturn(listOfRequests).when(requestDao).getAll();
 		assertEquals(listOfRequests, requestDao.getAll());
+		verify(requestDao).getAll();
 	}
 	
 }
