@@ -14,36 +14,5 @@
 </head>
 <body>
 	<p>Home</p>
-	
-<%-- 	<c:if test="${user == null}"> --%>
-<%-- 	    <a href="<c:url value="/login" />">Log in</a> --%>
-<%-- 	</c:if> --%>
-	
-	<c:choose>
-			<c:when test="${user != null} && ${admin != null}">
-				<sec:authorize access="hasAuthority('ADMIN')">
-					<spring:url value="/admin?id=${admin.id}" var="url" /><a href="${url}">Your Account Administrator</a>
-				</sec:authorize>
-			</c:when>
-			<c:when test="${user != null} && ${professor != null}">
-				<sec:authorize access="hasAuthority('PROFESSOR')">
-					<spring:url value="/accountProf?id=${professor.id}" var="url" /><a href="${url}">Your Account Professor</a>
-				</sec:authorize>
-			</c:when>
-			<c:when test="${user != null} && ${student != null}">
-				<sec:authorize access="hasAuthority('STUDENT')">
-					<spring:url value="/accountStudent?id=${student.id}" var="url" /><a href="${url}">Your Account Student</a>
-				</sec:authorize>
-			</c:when>
-			<c:otherwise>
-				<h4>Welcome!</h4>
-				<p><a href="<c:url value="/login" />">Log in</a></p>
-			</c:otherwise>
-	</c:choose>
-		
-	<c:if test="${user != null}">
-	    <a href="<c:url value="/logout" />">Log out</a>
-	</c:if>
-	
 </body>
 </html>
