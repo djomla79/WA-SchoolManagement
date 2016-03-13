@@ -33,15 +33,6 @@ public class ProfessorController {
 			return "profAccount";
 	}
 	
-//	@RequestMapping(value="/accountProf/{profId}")
-//	public String profAccount(@PathVariable Long profId, Model model) {
-//		
-//			Professor prof = profDao.getProfessorWithSubjectsById(profId);
-//			model.addAttribute("loggedProfessor", prof);
-//			
-//			return "profAccount";
-//	}
-	
 	@RequestMapping(value="/getProfessorWithSubjects/{profId}")
 	public String getProfessorWithSubjects(@PathVariable Long profId, Model model) {
 		

@@ -23,6 +23,10 @@ import com.school.dao.interfaces.StudentDao;
 @Controller
 public class MyController {
 	
+	public static String homePage = "home";
+	public static String adminPage = "redirect:/admin";
+	public static String registrationPage = "registrationPage";
+	
 	@Autowired
 	private ProfessorDao profDao;
 	
@@ -32,12 +36,13 @@ public class MyController {
 	@Autowired
 	private AdminDao adminDao;
 	
+	
 //	@Autowired
 //	private UserDao userDao;
 	
 	@RequestMapping({"/", "/home"})
 	public String goHome() {
-		return "home";
+		return homePage;
 	}
 	
 //	@RequestMapping({"/", "/home"})
@@ -71,12 +76,12 @@ public class MyController {
 		if (authentication != null) {
 			new SecurityContextLogoutHandler().logout(request, response, authentication);
 		}
-		return "home";
+		return homePage;
 	}
 	
 	@RequestMapping("/registerUser")
 	public String registrationPage(@ModelAttribute User user) {
-		return "registrationPage";
+		return registrationPage;
 	}
 	
 	@RequestMapping(value="/registerAdmin", method=RequestMethod.POST)
@@ -85,9 +90,9 @@ public class MyController {
 		admin.setEnabled(true);
 		admin.setAuthority("ADMIN");
 		if(adminDao.saveAdmin(admin) != null) {
-			return "redirect:/admin";
+			return adminPage;
 		}
-		return "registrationPage";
+		return registrationPage;
 	}
 	
 	@RequestMapping(value="/registerProfessor", method=RequestMethod.POST)
@@ -96,9 +101,9 @@ public class MyController {
 		prof.setEnabled(true);
 		prof.setAuthority("PROFESSOR");
 		if(profDao.saveProfessor(prof) != null) {
-			return "redirect:/admin";
+			return adminPage;
 		}
-		return "registrationPage";
+		return registrationPage;
 	}
 	
 	@RequestMapping(value="/registerStudent", method=RequestMethod.POST)
@@ -107,9 +112,9 @@ public class MyController {
 		student.setEnabled(true);
 		student.setAuthority("STUDENT");
 		if(studentDao.saveStudent(student) != null) {
-			return "redirect:/admin";
+			return adminPage;
 		}
-		return "registrationPage";
+		return registrationPage;
 	}
 	
 }

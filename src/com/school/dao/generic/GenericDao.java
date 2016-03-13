@@ -6,15 +6,15 @@ import java.util.Collection;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
-public interface GenericDao<T, ID extends Serializable> {
+public interface GenericDao<E, K extends Serializable> {
 	
-	T saveEntity(T entity);
-	T get(ID id);
-	T updateEntity(T entity);
-	void mergeEntity(T entity);
-	void deleteEntity(T entity);
-	T saveOrUpdate(T entity);
+	E saveEntity(E entity);
+	E get(K id);
+	E updateEntity(E entity);
+	void mergeEntity(E entity);
+	void deleteEntity(E entity);
+	E saveOrUpdate(E entity);
 	
-	Collection<T> getAll();
+	Collection<E> getAll();
 	
 }

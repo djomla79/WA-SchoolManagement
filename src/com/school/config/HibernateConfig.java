@@ -42,7 +42,6 @@ public class HibernateConfig {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
 		sessionFactory.setPackagesToScan(new String[]{ "com.school.beans_model" });
-		
 		sessionFactory.setHibernateProperties(getHibernateProperties());
 		
 		return sessionFactory;
@@ -53,7 +52,6 @@ public class HibernateConfig {
 	public DataSourceTransactionManager transactionManager() {
 		
 		DataSourceTransactionManager data = new DataSourceTransactionManager();
-		
 		data.setDataSource(dataSource());
 		
 		return data;

@@ -6,7 +6,7 @@ import javax.persistence.ManyToOne;
 @Embeddable
 public class Absence {
 	
-	private int absence;
+	private int absenceCounter;
 	
 	@ManyToOne
 	private Subject subject;
@@ -21,11 +21,11 @@ public class Absence {
 	}
 
 	public int getAbsence() {
-		return absence;
+		return absenceCounter;
 	}
 
 	public void setAbsence(int absence) {
-		this.absence = absence;
+		this.absenceCounter = absence;
 	}
 	
 }

@@ -37,6 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 			.antMatchers("/").permitAll()
 			.antMatchers("/home").permitAll()
+			.antMatchers("/login").permitAll()
 			.antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
 			.antMatchers("/registerUser").authenticated()
 			.antMatchers("/registerAdmin").authenticated()
@@ -48,8 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/accountProf").access("hasRole('PROFESSOR') or hasRole('ADMIN')")
 			.antMatchers("/getSubjectWithStudents/**").authenticated()
 			.antMatchers("/getStudentWithSubjects/**").authenticated()
-			.antMatchers("/getStudentWithSubjectsAndGrades/**").authenticated()
 			.antMatchers("/getProfessorWithSubjects/**").authenticated()
+			.antMatchers("/getStudentWithSubjectsAndGrades/**").authenticated()
 			.antMatchers("/addGradeToStudent").authenticated()
 			.antMatchers("/addAbsenceToStudent").authenticated()
 			.antMatchers("/addingSubject").authenticated()
@@ -61,18 +62,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/sendSubjectRequest").authenticated()
 			.antMatchers("/getGrades").authenticated()
 			.antMatchers("/getAbsences").authenticated()
+			.antMatchers("/logout").authenticated()
+			.antMatchers("/resources/**").permitAll()
 			.anyRequest().denyAll()
 		.and()
 			.formLogin()
 			.loginPage("/login")
 			.usernameParameter("username")
 			.passwordParameter("password")
-			.failureUrl("/login?error=true")
-			.defaultSuccessUrl("/home")
+			.failureUrl("/login?loginerror=true")
+			.defaultSuccessUrl("/")
+//		.and()
+//			.exceptionHandling().accessDeniedPage("/accessDenied")
 		.and()
 			.logout()
 			.logoutUrl("/logout")
-			.logoutSuccessUrl("/home");
+			.logoutSuccessUrl("/");
 		
 	}
 	

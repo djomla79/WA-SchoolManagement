@@ -23,10 +23,8 @@ public class AdminDaoImpl extends GenericDaoImpl<Admin, Long> implements AdminDa
 	
 	@Override
 	public Admin getAdminByUsername(String username) {
-		
 		Criteria criteria = getSession().createCriteria(Admin.class);
 		criteria.add(Restrictions.eq("username", username));
-		
 		return (Admin) criteria.uniqueResult();
 	}
 	

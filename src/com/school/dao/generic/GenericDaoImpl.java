@@ -12,66 +12,63 @@ import org.springframework.transaction.annotation.Transactional;
 import com.school.commons.BaseEntity;
 
 @Transactional
-public abstract class GenericDaoImpl<T extends BaseEntity, ID extends Serializable> implements GenericDao<T, ID> {
+public abstract class GenericDaoImpl<E extends BaseEntity, K extends Serializable> implements GenericDao<E, K> {
+	
+	private Class<E> persistentClass;
+	
+	public GenericDaoImpl(Class<E> persistentClass) {
+		this.persistentClass = persistentClass;
+	}
+	
 	
 	@Autowired
 	public SessionFactory sessionFactory;
-	
-	private Class<T> persistentClass;
-	
 	
 	public Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
 	
-	public GenericDaoImpl(Class<T> persistentClass) {
-		this.persistentClass = persistentClass;
-	}
-	
-
-	public Class<T> getPersistentClass() {
+	public Class<E> getPersistentClass() {
 		return persistentClass;
 	}
 	
 	@Override
-	public T saveEntity(T entity) {
+	public E saveEntity(E entity) {
 		getSession().save(entity);
 		return entity;
 	}
 
 	@Override
-	public T get(ID id) {
+	public E get(K id) {
 		return getSession().get(persistentClass, id);
 	}
 
 	@Override
-	public T updateEntity(T entity) {
+	public E updateEntity(E entity) {
 		getSession().update(entity);
 		return entity;
 	}
 
 	@Override
-	public void deleteEntity(T entity) {
+	public void deleteEntity(E entity) {
 		getSession().delete(entity);
 	}
 	
 	@Override
-	public void mergeEntity(T entity) {
+	public void mergeEntity(E entity) {
 		getSession().merge(entity);
 	}
 
 	@Override
-	public T saveOrUpdate(T entity) {
+	public E saveOrUpdate(E entity) {
 		getSession().saveOrUpdate(entity);
 		return entity;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Collection<T> getAll() {
-		
+	public Collection<E> getAll() {
 		Criteria criteria = getSession().createCriteria(persistentClass);
-		
 		return criteria.list();
 	}
 	

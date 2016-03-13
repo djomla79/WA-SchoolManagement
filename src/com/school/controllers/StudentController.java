@@ -1,7 +1,6 @@
 package com.school.controllers;
 
 import java.security.Principal;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,9 +21,12 @@ import com.school.dao.interfaces.SubjectDao;
 @Controller
 public class StudentController {
 	
+	public static String accountStudent = "redirect:/accountStudent";
+	public static String accountProfessor = "redirect:/accountProf";
+	public static String studentGrading = "studentGrading";
+	
 	@Autowired
 	private StudentDao studentDao;
-	
 	@Autowired
 	private SubjectDao subjectDao;
 	
@@ -33,10 +35,9 @@ public class StudentController {
 	public String studentAccount(Principal principal, Model model) {
 		
 		Student student = studentDao.getStudentWithSubjectsAndGrades(principal.getName());
-		List<Subject> allSubjects = (List<Subject>) subjectDao.getAll();
 		
 		model.addAttribute("student", student);
-		model.addAttribute("allSubjects", allSubjects);
+		model.addAttribute("allSubjects", subjectDao.getAll());
 		
 		return "studentAccount";
 	}
@@ -56,8 +57,8 @@ public class StudentController {
 	public String getSubjectWithStudents(@PathVariable Long subjectId, Model model) {
 		
 		Subject subject = subjectDao.getSubjectWithStudentsById(subjectId);
-		List<Student> students = subject.getStudents();
-		model.addAttribute("students", students);
+		model.addAttribute("subject", subject);
+		model.addAttribute("students", subject.getStudents());
 		
 		return "allStudents";
 	}
@@ -66,37 +67,39 @@ public class StudentController {
 	public String getStudentWithSubjects(@PathVariable Long studentId, Model model) {
 		
 		Student student = studentDao.getStudentWithSubjectsById(studentId);
-		List<Subject> subjects = student.getStudentSubjects();
+		
 		model.addAttribute("student", student);
-		model.addAttribute("subjects", subjects);
+		model.addAttribute("subjects", student.getStudentSubjects());
 		
 		return "studentInfo";
 	}
 	
-	@RequestMapping(value="/getStudentWithSubjectsAndGrades/{studentId}")
-	public String getStudentWithSubjectsAndGrades(@PathVariable Long studentId, Model model) {
+	@RequestMapping(value="/getStudentWithSubjectsAndGrades/{studentId}/{subjectId}")
+	public String getStudentWithSubjectsAndGrades(@PathVariable Long studentId,
+												  @PathVariable Long subjectId, Model model) {
 		
-		Student student = studentDao.getStudentWithSubjectsAndGradesById(studentId);
-		List<Subject> subjects = student.getStudentSubjects();
-		List<Grade> grades = student.getStudentGrades();
-		model.addAttribute("student", student);
-		model.addAttribute("studentSubjects", subjects);
-		model.addAttribute("studentGrades", grades);
+//		Student student = studentDao.getStudentWithSubjectsAndGradesById(studentId);
+//		
+//		model.addAttribute("student", student);
+//		model.addAttribute("studentSubjects", student.getStudentSubjects());
+//		model.addAttribute("studentGrades", student.getStudentGrades());
 		
-		return "studentGrading";
+		return studentGrading;
 	}
 	
 	@RequestMapping(value="/getSubjectToStudent", params={"student", "subject"})
-	public String getSubjectToStudent(@RequestParam("student") Long studentId, @RequestParam("subject") Long subjectId) {
+	public String getSubjectToStudent(@RequestParam("student") Long studentId,
+									  @RequestParam("subject") Long subjectId) {
 		
 		studentDao.addSubjectToStudent(studentId, subjectDao.getSubjectById(subjectId));
 		subjectDao.addStudentToSubject(studentDao.getStudentById(studentId), subjectId);
 		
-		return "redirect:/accountStudent";
+		return accountStudent;
 	}
 	
 	@RequestMapping(value="/sendSubjectRequest", params={"student", "subject"})
-	public String sendSubjectRequest(@RequestParam("student") Long studentId, @RequestParam("subject") Long subjectId) {
+	public String sendSubjectRequest(@RequestParam("student") Long studentId,
+									 @RequestParam("subject") Long subjectId) {
 		
 		Student student = studentDao.getStudentWithRequestsById(studentId);
 		Subject subject = subjectDao.getSubjectById(subjectId);
@@ -108,10 +111,12 @@ public class StudentController {
 		student.getSubjectRequests().add(request);
 		studentDao.mergeStudent(student);
 		
-		return "redirect:/accountStudent";
+		return accountStudent;
 	}
 	
-	@RequestMapping(value="/addGradeToStudent", params={"student", "subject", "gradeValue"}, method=RequestMethod.POST)
+	@RequestMapping(value="/addGradeToStudent",
+					params={"student", "subject", "gradeValue"},
+					method=RequestMethod.POST)
 	public String addGradeToStudent(@RequestParam("student") Long studentId,
 									@RequestParam("subject") Long subjectId,
 									@RequestParam("gradeValue") Integer gradeValue) {
@@ -123,15 +128,16 @@ public class StudentController {
 			grade.setSubject(subject);
 			grade.setGradeValue(gradeValue);
 			studentDao.addGradeToStudent(studentId, grade);
-			return "studentGrading";
+			return studentGrading;
 		} else {
-			return "redirect:/accountProf";
+			return accountProfessor;
 		}
 		
 	}
 	
 	@RequestMapping(value="/addAbsenceToStudent", params={"student", "subject"})
-	public String addAbsenceToStudent(@RequestParam("student") Long studentId, @RequestParam("subject") Long subjectId) {
+	public String addAbsenceToStudent(@RequestParam("student") Long studentId,
+									  @RequestParam("subject") Long subjectId) {
 		
 		Subject subject = subjectDao.getSubjectById(subjectId);
 		Absence absence = new Absence();
@@ -139,26 +145,26 @@ public class StudentController {
 		absence.setAbsence(1);
 		studentDao.addAbsenceToStudent(studentId, absence);
 		
-		return "redirect:/accountProf";
+		return accountProfessor;
 	}
 	
 	/** Zapocete i jos nedovrsene metode */
-//	@RequestMapping(value="/getGrades", params={"student", "subject"})
-//	public String getGrades(@RequestParam("student") Long studentId , @RequestParam("subject") Long subjectId, Model model) {
-//		
-//		Student student = studentDao.getStudentById(studentId);
-//		Subject subject = subjectDao.getSubjectById(subjectId);
-//		List<Grade> grades = studentDao.getListOfGradesBySubjectAndStudent(subject, student);
-//		model.addAttribute("grades", grades);
-//		//model.addAttribute("listOfGrades", listOfGrades);
-//		model.addAttribute("subject", subject);
-//		model.addAttribute("student", student);
-//		
-//		return "studentGrades";
-//	}
-//	
+	@RequestMapping(value="/getGrades", params={"student", "subject"})
+	public String getGrades(@RequestParam("student") Long studentId ,
+							@RequestParam("subject") Long subjectId, Model model) {
+		
+		Student student = studentDao.getStudentById(studentId);
+		Subject subject = subjectDao.getSubjectById(subjectId);
+		model.addAttribute("grades", studentDao.getGradesBySubjectAndStudent(student, subject));
+		model.addAttribute("subject", subject);
+		model.addAttribute("student", student);
+		
+		return "studentGrades";
+	}
+	
 //	@RequestMapping(value="/getAbsences", params={"student", "subject"})
-//	public String getAbsences(@RequestParam("student") Long studentId , @RequestParam("subject") Long subjectId, Model model) {
+//	public String getAbsences(@RequestParam("student") Long studentId ,
+//							  @RequestParam("subject") Long subjectId, Model model) {
 //		
 //		Subject subject = subjectDao.getSubjectById(subjectId);
 //		//Student student = studentDao.getStudentWithGradesBySubjectId(subject);

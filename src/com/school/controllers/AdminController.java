@@ -1,7 +1,6 @@
 package com.school.controllers;
 
 import java.security.Principal;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.school.beans_model.Admin;
-import com.school.beans_model.Professor;
 import com.school.beans_model.Subject;
 import com.school.beans_model.SubjectRequest;
 import com.school.dao.interfaces.AdminDao;
@@ -25,62 +22,41 @@ import com.school.dao.interfaces.SubjectRequestDao;
 @Controller
 public class AdminController {
 	
+	public static String adminPage = "redirect:/admin";
+	public static String addSubject = "addSubject";
+	
 	@Autowired
 	private AdminDao adminDao;
-	
 	@Autowired
 	private ProfessorDao profDao;
-	
 	@Autowired
 	private SubjectDao subjectDao;
-	
 	@Autowired
 	private StudentDao studentDao;
-	
 	@Autowired
 	private SubjectRequestDao subjectRequestDao;
-	
 	
 	@RequestMapping("/admin")
 	public String adminPage(Principal principal, Model model) {
 		
-		Admin admin = adminDao.getAdminByUsername(principal.getName());
-		model.addAttribute("admin", admin);
-		
-		List<Professor> professors =  (List<Professor>) profDao.getAll();
-		model.addAttribute("professors", professors);
-		
-		List<SubjectRequest> subjectRequests = (List<SubjectRequest>) subjectRequestDao.getAll();
-		model.addAttribute("subjectRequests", subjectRequests);
+		model.addAttribute("admin", adminDao.getAdminByUsername(principal.getName()));
+		model.addAttribute("professors", profDao.getAll());
+		model.addAttribute("subjectRequests", subjectRequestDao.getAll());
 		
 		return "admin";
 	}
-//	@RequestMapping(value="/admin/{adminId}")
-//	public String adminPage(@PathVariable Long adminId, Model model) {
-//		
-//		Admin admin = adminDao.getAdminById(adminId);
-//		model.addAttribute("admin", admin);
-//		
-//		List<Professor> professors =  (List<Professor>) profDao.getAll();
-//		model.addAttribute("professors", professors);
-//		
-//		List<SubjectRequest> subjectRequests = (List<SubjectRequest>) subjectRequestDao.getAll();
-//		model.addAttribute("subjectRequests", subjectRequests);
-//		
-//		return "admin";
-//	}
 	
 	@RequestMapping("/addingSubject")
 	public String addSubject(@ModelAttribute("subject") Subject subject) {
-		return "addSubject";
+		return addSubject;
 	}
 	
 	@RequestMapping(value="/addSubject", method=RequestMethod.POST)
 	public String subjectAdded(Subject subject) {
 		if(subjectDao.saveSubject(subject) != null) {
-			return "redirect:/admin";			
+			return adminPage;			
 		}
-		return "addSubject";
+		return addSubject;
 	}
 	
 	@RequestMapping("/addSubjectToProf")
@@ -98,7 +74,7 @@ public class AdminController {
 		profDao.addSubjectToProfessorById(profId, subjectDao.getSubjectById(subjectId));
 		subjectDao.addProfessorToSubjectById(profDao.getProfessorById(profId), subjectId);
 		
-		return "redirect:/admin";			
+		return adminPage;			
 	}
 	
 	@RequestMapping(value="/acceptSubjectRequest/{subjectRequestId}")
@@ -109,7 +85,7 @@ public class AdminController {
 	   studentDao.addSubjectToStudentByRequestId(subjectRequestId);
 	   subjectRequestDao.deleteSubjectRequest(subjectRequest);
 	
-	   return "redirect:/admin";
+	   return adminPage;
 	}
 	
 	@RequestMapping(value="/declineSubjectRequest/{subjectRequestId}")
@@ -120,7 +96,7 @@ public class AdminController {
 	   studentDao.removeSubjectRequestByRequestId(subjectRequestId);
 	   subjectRequestDao.deleteSubjectRequest(subjectRequest);
 	
-	   return "redirect:/admin";
+	   return adminPage;
 	}
 	
 }
