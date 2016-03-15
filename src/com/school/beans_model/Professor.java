@@ -11,12 +11,12 @@ public class Professor extends User {
 	
 	private static final long serialVersionUID = 1L;
 	
-	
 	@OneToMany(mappedBy="professor", targetEntity=Subject.class)
 	private List<Subject> subjects = new ArrayList<>();
 	
 	
 	public Professor() {
+		/** Empty default constructor */
 	}
 	
 	public Professor(User user) {

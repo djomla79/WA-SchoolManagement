@@ -44,18 +44,4 @@ public class Subject extends BaseEntity {
 		return students;
 	}
 	
-//	public double getAverageSubjectGrades() {
-//		
-//		double average = 0;
-//		int sum = 0, size = 0;
-//		
-//		for(Integer grades: subjectGrades) {
-//			size = subjectGrades.size();
-//			sum += grades;
-//		}
-//		average = (double)sum/size;
-//		
-//		return average;
-//	}
-	
 }

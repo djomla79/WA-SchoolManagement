@@ -12,11 +12,9 @@
 </head>
 <body>
 	
-	<h3>Student <c:out value="${student.name}" /> <c:out value="${student.lastName}" /></h3>
+	<h4>Student <c:out value="${student.name}" /> <c:out value="${student.lastName}" /></h4>
 		
-	<h4>Student Subjects</h4>
-	<c:forEach items="${student.studentSubjects}" var="subject">		
-		<c:out value="${subject.subjectName}" /><br>
+	<h5>Subject <c:out value="${subject.subjectName}" /></h5>
 	
 		<spring:url value="/addGradeToStudent?student=${student.id}&subject=${subject.id}" var="url" />
 		<form action="${url}" method="POST">
@@ -40,33 +38,10 @@
           
           <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button> 
 		</form>
+		
 		<p>Add Absence for this subject:</p>
 		<spring:url value="/addAbsenceToStudent?student=${student.id}&subject=${subject.id}" var="absenceUrl" />
 		<a href="${absenceUrl}"><c:out value="${subject.subjectName}"/></a>
-	</c:forEach>
-	
-<!-- 	<table class="table"> -->
-<!-- 			<thead class="thead-default"> -->
-<!-- 				<tr> -->
-<!-- 					<th>Student</th> -->
-<!-- 					<th>Student's subjects</th> -->
-<!-- 					<th>Add Grade to Student</th> -->
-<!-- 				</tr> -->
-<!-- 			</thead> -->
-<!-- 			<tbody> -->
-<%-- 				<c:forEach items="${student.studentSubjects}" var="subject"> --%>
-<!-- 					<tr> -->
-<%-- 						<td><c:out value="${student.name}" /> <c:out value="${student.lastName}" /></td> --%>
-<%-- 						<td><c:out value="${subject.subjectName}" /><br></td> --%>
-<!-- 						<td>	 -->
-<%-- 							<spring:url value="/addGradeToStudent?student=${student.id}&subject=${subject.id}" var="url" /> --%>
-<%-- 							<a href="${url}"><c:out value="${subject.subjectName}"/></a> --%>
-<!-- 							<br> -->
-<!-- 						</td> -->
-<!-- 					</tr> -->
-<%-- 				</c:forEach> --%>
-<!-- 			</tbody> -->
-<!-- 		</table> -->
 	
 </body>
 </html>

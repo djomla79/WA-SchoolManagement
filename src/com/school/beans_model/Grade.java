@@ -1,20 +1,27 @@
 package com.school.beans_model;
 
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
-@Embeddable
-public class Grade {
+import com.school.commons.BaseEntity;
+
+@Entity
+public class Grade extends BaseEntity {
+	
+	private static final long serialVersionUID = 1L;
 	
 	@ManyToOne
 	private Subject subject;
-	
 	@ManyToOne
 	private Student student;
 	
 	private int gradeValue;
 	
-
+	
+	public Grade() {
+		/** Empty default constructor */
+	}
+	
 	public Subject getSubject() {
 		return subject;
 	}

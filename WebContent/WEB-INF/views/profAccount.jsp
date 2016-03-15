@@ -11,10 +11,10 @@
 </head>
 <body>
 	
-	<h1>Welcome Professor <c:out value="${loggedProfessor.name}"/> <c:out value="${loggedProfessor.lastName}"/></h1>
+	<h3>Welcome Professor <c:out value="${loggedProfessor.name}"/> <c:out value="${loggedProfessor.lastName}"/></h3>
 	
 	<br>
-	<h2>Your Subjects</h2>
+	<h4>Your Subjects</h4>
 	
 	<table class="table">
 			<thead class="thead-default">
@@ -34,12 +34,6 @@
 				</c:forEach>
 			</tbody>
 		</table>
-<%-- 	<c:forEach items="${loggedProfessor.subjects}" var="subject"> --%>
-<%-- 			<c:out value="${subject.subjectName}"/> <br> --%>
-<%-- 			<c:url value="/getSubjectWithStudents/${subject.id}" var="url"/> --%>
-<%-- 			<a href="${url}">Get students with this subject</a> --%>
-<!-- 			<br> -->
-<%-- 	</c:forEach> --%>
-
+		
 </body>
 </html>

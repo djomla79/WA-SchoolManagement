@@ -11,16 +11,16 @@
 </head>
 <body>
 	
-	<h3>Student <c:out value="${student.name}" /> <c:out value="${student.lastName}" /></h3>
+	<h4>Student <c:out value="${student.name}" /> <c:out value="${student.lastName}" /></h4>
 		
-		<p>Username: <c:out value="${student.username}" /></p>
-		<p>Password: <c:out value="${student.password}" /></p>
+		<p>Username: <c:out value="${student.username}" /> Password: <c:out value="${student.password}" /></p>
 		
-	<h4>Student Subjects</h4>
-	<c:forEach items="${subjects}" var="subject">		
-		<c:out value="${subject.subjectName}" />
-		<br>
+	<h5>Subject: <c:out value="${subject.subjectName}" /></h5>
+	<h5>Grades: </h5>
+	<c:forEach items="${grades}" var="grade">		
+		<c:out value="${grade.gradeValue}" />, 
 	</c:forEach>
+	<h5>Average grades for this subject: <c:out value="${subjectAverage}" /></h5>
 	
 </body>
 </html>

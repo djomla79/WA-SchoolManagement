@@ -11,9 +11,9 @@
 </head>
 <body>
 	
-	<h3>Subject: <c:out value="${subject.subjectName}" /></h3>
+	<h4>Subject: <c:out value="${subject.subjectName}" /></h4>
 		
-	<h3>Professor for this subject: <c:out value="${professor.name}" /> <c:out value="${professor.lastName}" /></h3>
+	<h4>Professor for this subject: <c:out value="${professor.name}" /> <c:out value="${professor.lastName}" /></h4>
 	
 </body>
 </html>

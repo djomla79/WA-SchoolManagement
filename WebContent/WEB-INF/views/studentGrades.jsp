@@ -11,14 +11,27 @@
 </head>
 <body>
 	<h3>Student: <c:out value="${student.name}"/> <c:out value="${student.lastName}"/></h3>
-	<h4>Subject: <c:out value="${subject.subjectName}"/></h4>
-	<h4>Grades: </h4>
-<%-- 	<c:forEach items="${listOfGrades}" var="grade">		 --%>
-<%-- 		<c:out value="${grade.gradeValue}" /> --%>
-<%-- 	</c:forEach> --%>
-	<c:forEach items="${grades}" var="grade">		
-		<c:out value="${grade.gradeValue}" />
-	</c:forEach>
+	
+	<table class="table">
+		<thead class="thead-default"> 
+			<tr>
+				<th>Subject</th>
+				<th>Grades</th>
+				<th>Grades Average</th>
+				<th>Absences</th>
+			</tr>
+		</thead>
+		<tbody>
+				<tr>
+					<td><c:out value="${subject.subjectName}"/></td>
+					<td><c:forEach items="${grades}" var="grade">
+							<c:out value="${grade.gradeValue}"/>, 
+					</c:forEach></td>
+					<td><c:out value="${subjectAverage}"/></td>
+					<td><c:out value="${absences}"/></td>
+				</tr>
+		</tbody>
+	</table>
 	
 </body>
 </html>

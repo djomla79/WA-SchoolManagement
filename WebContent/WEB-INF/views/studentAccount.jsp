@@ -18,24 +18,15 @@
 	<h4>Your Subjects</h4>
 	<c:forEach items="${student.studentSubjects}" var="subject">
 			<c:out value="${subject.subjectName}"/>
-			<p><spring:url value="/getGrades?student=${student.id}&subject=${subject.id}" var="url" />
-			<a href="${url}">Grades for this subject</a></p>
-			<p><spring:url value="/getAbsences?student=${student.id}&subject=${subject.id}" var="url" />
-			<a href="${url}">Absences for this subject</a></p>
+			<p><spring:url value="/getGradesAndAbsences?student=${student.id}&subject=${subject.id}" var="url" />
+			<a href="${url}">Your grades and absences for this subject</a></p>
 <%-- 		<a href="<c:url value="subject?subjectName=${subject.subjectName}" />"><c:out value="${subject.subjectName}"></c:out></a> --%>
 <%-- 		<a href="<c:url value="/${subject.subjectName}" />"><c:out value="${subject.subjectName}"></c:out></a> --%>
 			<br>
 	</c:forEach>
-	
 	<br>
-<!-- 	<h4> Your Grades</h4> -->
-<%-- 	<c:forEach items="${student.studentGrades}" var="grade"> --%>
-<%-- 	<c:forEach items="${gradeValues}" var="grade"> --%>
-<%-- 			<c:out value="${grade.gradeValues}"/> --%>
-<%-- 		<p><spring:url value="/getGrades?student=${student.id}&grade=${grade.id}" var="url" /> --%>
-<%-- 			<a href="${url}"><c:out value="${grade.id}"/></a></p> --%>
-<%-- 		</c:forEach> --%>
-	
+	<h5>Total average for all grades: <c:out value="${totalAverage}" /></h5>
+	<br>
 	<h4>Choose Subjects</h4>
 	<c:forEach items="${allSubjects}" var="subject">
 			<p><c:out value="${subject.subjectName}"/>

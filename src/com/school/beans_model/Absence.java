@@ -1,17 +1,28 @@
 package com.school.beans_model;
 
-import javax.persistence.Embeddable;
-import javax.persistence.ManyToOne;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
-@Embeddable
-public class Absence {
+import com.school.commons.BaseEntity;
+
+@Entity
+public class Absence extends BaseEntity {
 	
+	private static final long serialVersionUID = 1L;
+
 	private int absenceCounter;
 	
-	@ManyToOne
+	@OneToOne
 	private Subject subject;
+	@OneToOne
+	private Student student;
 	
-
+	
+	public Absence() {
+		/** Empty default constructor */
+	}
+	
+	/** Geters and Seters */
 	public Subject getSubject() {
 		return subject;
 	}
@@ -19,12 +30,20 @@ public class Absence {
 	public void setSubject(Subject subject) {
 		this.subject = subject;
 	}
+	
+	public Student getStudent() {
+		return student;
+	}
 
-	public int getAbsence() {
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public int getAbsenceCounter() {
 		return absenceCounter;
 	}
 
-	public void setAbsence(int absence) {
+	public void setAbsenceCounter(int absence) {
 		this.absenceCounter = absence;
 	}
 	

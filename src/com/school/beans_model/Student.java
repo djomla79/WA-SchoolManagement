@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
@@ -22,18 +21,17 @@ public class Student extends User {
 	   		   inverseJoinColumns=@JoinColumn(name="subject_id"))
 	private List<Subject> studentSubjects = new ArrayList<>();
 	
-	@ElementCollection
-	private List<Grade> studentGrades; //= new ArrayList<>();
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<Grade> studentGrades = new ArrayList<>();
 	
-	@ElementCollection
-	private List<Absence> studentAbsences; //= new ArrayList<>();
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<Absence> studentAbsences = new ArrayList<>();
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<SubjectRequest> subjectRequests = new ArrayList<>();
 	
 	public Student() {
-		studentGrades = new ArrayList<>();
-		studentAbsences = new ArrayList<>();
+		/** Empty default constructor */
 	}
 	
 	public Student(User user) {

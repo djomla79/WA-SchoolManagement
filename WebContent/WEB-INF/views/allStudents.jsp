@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE>
 <html>
@@ -18,29 +19,23 @@
 				<tr>
 					<th>Student</th>
 					<th>Info</th>
-					<th>Student's Subjects and Grades</th>
+					<th>Student's Subject - adding Grades</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${students}" var="student">
 					<tr>
 						<td><c:out value="${student.name}"/> <c:out value="${student.lastName}"/></td>
-						<td><c:url value="/getStudentWithSubjects/${student.id}" var="url"/>
+						<td><c:url value="/getStudentWithSubjectAndGrades?student=${student.id}&subject=${subject.id}" var="url"/>
 							<a href="${url}">Student info</a></td>
 						<td>
-							<c:url value="/getStudentWithSubjectsAndGrades/${student.id}/${subject.id}" var="url"/>
-							<a href="${url}">Subjects and Grades</a>
+							<p><spring:url value="/getStudentWithSubjectAndAddGrade?student=${student.id}&subject=${subject.id}" var="url" />
+							<a href="${url}">Grade this subject</a></p>
 						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<%-- 	<c:forEach items="${students}" var="student"> --%>
-<%-- 		<p><c:out value="${student.name}" /> <c:out value="${student.lastName}" /> --%>
-<%-- 		<c:url value="/getStudentWithSubjects/${student.id}" var="url"/> --%>
-<%-- 		<a href="${url}">Student info</a></p> --%>
-<%-- 		<p><c:url value="/getStudentWithSubjectsAndGrades/${student.id}" var="url"/> --%>
-<%-- 		<a href="${url}">Student Subjects and Grades</a></p> --%>
-<%-- 	</c:forEach> --%>
+		
 </body>
 </html>
