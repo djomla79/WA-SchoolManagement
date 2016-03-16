@@ -11,7 +11,7 @@
 </head>
 <body>
 	
-	<jsp:include page="/WEB-INF/views/fragments/navbar.jsp" />
+	<jsp:include page="../fragments/navbar.jsp" />
 	
 	<h3>Student: <c:out value="${student.name}"/> <c:out value="${student.lastName}"/></h3>
 	

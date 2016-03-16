@@ -13,7 +13,7 @@
 </head>
 <body>
 	
-	<jsp:include page="/WEB-INF/views/fragments/navbar.jsp" />
+	<jsp:include page="../fragments/navbar.jsp" />
 	
 	<div class="container">
 		<div id="header1">Professor Registration</div>

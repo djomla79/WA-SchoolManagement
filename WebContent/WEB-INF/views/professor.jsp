@@ -11,18 +11,30 @@
 </head>
 <body>
 	
-	<jsp:include page="/WEB-INF/views/fragments/navbar.jsp" />
+	<jsp:include page="../fragments/navbar.jsp" />
 	
-	<h3>Professor <c:out value="${professor.name}" /> <c:out value="${professor.lastName}" /></h3>
-		
-		<p>Username: <c:out value="${professor.username}" /></p>
-		<p>Password: <c:out value="${professor.password}" /></p>
-		
-	<h4>Professor Subjects</h4>
-	<c:forEach items="${subjects}" var="subject">		
-		<c:out value="${subject.subjectName}" />
-		<br>
-	</c:forEach>
+	<div class="row">
+         <div class="well">
+         	<h3>Professor <c:out value="${professor.name}" /> <c:out value="${professor.lastName}" /></h3>
+         </div>
+     </div>
+	
+	<p>Username: <c:out value="${professor.username}" /></p>
+	<p>Password: <c:out value="${professor.password}" /></p>
+	
+	<div class="row">
+         <div class="well">
+         	<h4>Professor Subjects</h4>
+         </div>
+     </div>
+	
+	<div class="container">
+    	<div class="container1">
+			<c:forEach items="${subjects}" var="subject">		
+				<c:out value="${subject.subjectName}" /><br>
+			</c:forEach>
+		</div>
+	</div>
 	
 </body>
 </html>

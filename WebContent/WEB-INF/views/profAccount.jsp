@@ -11,31 +11,41 @@
 </head>
 <body>
 	
-	<jsp:include page="/WEB-INF/views/fragments/navbar.jsp" />
+	<jsp:include page="../fragments/navbar.jsp" />
 	
-	<h3>Welcome Professor <c:out value="${loggedProfessor.name}"/> <c:out value="${loggedProfessor.lastName}"/></h3>
-	
+	<div class="row">
+	    <div class="well">
+	    	<h3>Welcome Professor <c:out value="${loggedProfessor.name}"/> <c:out value="${loggedProfessor.lastName}"/></h3>
+	    </div>
+    </div>
 	<br>
-	<h4>Your Subjects</h4>
+	<div class="row">
+	    <div class="well">
+	    	<h4>Your Subjects</h4>
+	    </div>
+    </div>
 	
-	<table class="table">
-			<thead class="thead-default">
-				<tr>
-					<th>Subject</th>
-					<th>This subject's students</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${loggedProfessor.subjects}" var="subject">
+	<div class="container">
+      <div class="container1">
+		<table class="table">
+				<thead class="thead-default">
 					<tr>
-						<td><c:out value="${subject.subjectName}"/></td>
-						<td><c:url value="/getSubjectWithStudents/${subject.id}" var="url"/>
-							<a href="${url}">Students</a>
-						</td>
+						<th>Subject</th>
+						<th>This subject's students</th>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		
+				</thead>
+				<tbody>
+					<c:forEach items="${loggedProfessor.subjects}" var="subject">
+						<tr>
+							<td><c:out value="${subject.subjectName}"/></td>
+							<td><c:url value="/getSubjectWithStudents/${subject.id}" var="url"/>
+								<a href="${url}">Students</a>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </body>
 </html>

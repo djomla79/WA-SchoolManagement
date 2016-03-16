@@ -6,9 +6,13 @@
     <div>
       <ul class="nav navbar-nav">
         <li><a href="${pageContext.request.contextPath}/">Home Page</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-left">
         <li><a href="${pageContext.request.contextPath}/admin">Admin page</a></li>
+	  </ul>
+	  <ul class="nav navbar-nav navbar-right">
         <li><a href="${pageContext.request.contextPath}/logout">Log out</a></li>
-	    </ul>
+	  </ul>
     </div>
   </div>
 </nav>

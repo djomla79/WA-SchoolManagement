@@ -12,11 +12,16 @@
 </head>
 <body>
 	
-	<jsp:include page="/WEB-INF/views/fragments/navbar.jsp" />
+	<jsp:include page="../fragments/navbar.jsp" />
 	
-	<h3>Students</h3>
-
-	<table class="table">
+	<div class="row">
+         <div class="well"><h3>Students</h3></div>
+     </div>
+	
+	<div class="container">
+      <div class="container1">
+	
+		<table class="table">
 			<thead class="thead-default">
 				<tr>
 					<th>Student</th>
@@ -39,5 +44,7 @@
 			</tbody>
 		</table>
 		
+		</div>
+	</div>
 </body>
 </html>

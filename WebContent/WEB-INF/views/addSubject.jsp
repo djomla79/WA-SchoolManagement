@@ -6,16 +6,22 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<link href="<c:url value='/resources/css/style1.css'/>" type="text/css" rel="stylesheet" />
+	<link href="<spring:url value='/resources/css/style1.css'/>" type="text/css" rel="stylesheet" />
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<title>Add Subject</title>
 </head>
 <body>
 	
-	<jsp:include page="/WEB-INF/views/fragments/admin-navbar.jsp" />
+	<jsp:include page="../fragments/admin-navbar.jsp" />
 	
-	<p>Add Subject</p>
+	<div class="row">
+         <div class="well"><h3>Add new Subject</h3></div>
+     </div>
+	
+    <div class="container">
+      <div class="container1">
+	
 		<spring:url value="/addSubject" var="formUrl" />
 	    <form:form modelAttribute="subject" action="${formUrl}" method="POST">
 			
@@ -26,6 +32,8 @@
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
 				
 		</form:form>
-
+		
+		</div>
+	</div>
 </body>
 </html>

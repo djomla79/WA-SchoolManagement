@@ -12,21 +12,35 @@
 </head>
 <body>
 	
-	<jsp:include page="/WEB-INF/views/fragments/navbar.jsp" />
+	<jsp:include page="../fragments/navbar.jsp" />
 	
-	<h3>Welcome <c:out value="${student.name}"/> <c:out value="${student.lastName}"/></h3>
-	
-	<br>
+	<div class="row">
+         <div class="well">
+         	<h3>Welcome <c:out value="${student.name}"/> <c:out value="${student.lastName}"/></h3>
+         </div>
+    </div><br>
+    
 	<h4>Your Subjects</h4>
-	<c:forEach items="${student.studentSubjects}" var="subject">
-			<c:out value="${subject.subjectName}"/>
-			<p><spring:url value="/getGradesAndAbsences?student=${student.id}&subject=${subject.id}" var="url" />
-			<a href="${url}">Your grades and absences for this subject</a></p>
-<%-- 		<a href="<c:url value="subject?subjectName=${subject.subjectName}" />"><c:out value="${subject.subjectName}"></c:out></a> --%>
-<%-- 		<a href="<c:url value="/${subject.subjectName}" />"><c:out value="${subject.subjectName}"></c:out></a> --%>
-			<br>
-	</c:forEach>
-	<br>
+	
+	<table class="table">
+		<thead class="thead-default">
+			<tr>
+				<th>Subject</th>
+				<th>Grades and Absences</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${student.studentSubjects}" var="subject">
+				<tr>
+					<td><c:out value="${subject.subjectName}"/></td>
+					<td><spring:url value="/getGradesAndAbsences?student=${student.id}&subject=${subject.id}" var="url" />
+						<a href="${url}">Your grades and absences for this subject</a>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table><br>
+	
 	<h5>Total average for all grades: <c:out value="${totalAverage}" /></h5>
 	<br>
 	<h4>Choose Subjects</h4>

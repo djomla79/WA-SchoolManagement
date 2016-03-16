@@ -4,18 +4,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="<c:url value='/resources/css/style1.css'/>" type="text/css" rel="stylesheet" />
+	<link href="<spring:url value='/resources/css/style1.css'/>" type="text/css" rel="stylesheet" />
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<title>Login Page</title>
 </head>
 <body onload='document.f.username.focus();'>
 	
-	<%-- 	<jsp:include page="/WEB-INF/views/fragments/navbar.jsp" /> --%>
+	<jsp:include page="../fragments/navbar.jsp" />
 	
 	<div class="row">
          <div class="well"><h3>Enter your username and password</h3></div>
-     </div>
+    </div>
 	
     <div class="container">
       <div class="container1">
@@ -32,7 +32,7 @@
 					
 				</div>
 				
-				<br/><input name="submit" type="submit" value="Login" class="btn btn-info btn-block" />
+				<br/><input name="submit" type="submit" value="Login" class="btn btn-sm btn-primary" />
 				 
 			</form>
 

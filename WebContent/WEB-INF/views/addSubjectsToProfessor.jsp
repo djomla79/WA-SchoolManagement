@@ -5,14 +5,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<link href="<c:url value='/resources/css/style1.css'/>" type="text/css" rel="stylesheet" />
+	<link href="<spring:url value='/resources/css/style1.css'/>" type="text/css" rel="stylesheet" />
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <title>addSubjectsToProfessor</title>
 </head>
 <body>
 	
-	<jsp:include page="/WEB-INF/views/fragments/admin-navbar.jsp" />
+	<jsp:include page="../fragments/admin-navbar.jsp" />
 	
 	<div class="container">
 		<div class="header1">addSubjectsToProfessor</div>
