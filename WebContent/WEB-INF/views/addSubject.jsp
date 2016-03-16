@@ -13,6 +13,8 @@
 </head>
 <body>
 	
+	<jsp:include page="/WEB-INF/views/fragments/admin-navbar.jsp" />
+	
 	<p>Add Subject</p>
 		<spring:url value="/addSubject" var="formUrl" />
 	    <form:form modelAttribute="subject" action="${formUrl}" method="POST">

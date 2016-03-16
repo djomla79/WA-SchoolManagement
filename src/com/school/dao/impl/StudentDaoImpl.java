@@ -2,8 +2,8 @@ package com.school.dao.impl;
 
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+//import org.hibernate.Session;
+//import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -71,10 +71,7 @@ public class StudentDaoImpl extends GenericDaoImpl<Student, Long> implements Stu
 		Criteria crit = getSession().createCriteria(Student.class);
 		crit.add(Restrictions.eq("username", username));
 		Student student = (Student) crit.uniqueResult();
-		if (student != null) {
-			return true;
-		}
-		return false;
+		return student != null ? true : false;
 	}
 
 	@Override
@@ -115,32 +112,30 @@ public class StudentDaoImpl extends GenericDaoImpl<Student, Long> implements Stu
 	
 	@Override
 	public void addSubjectToStudentByRequestId(Long subjectRequestId) {
-		Session session = sessionFactory.openSession();
-		Transaction txn = session.beginTransaction();
 		
-		SubjectRequest subjectRequest = session.get(SubjectRequest.class, subjectRequestId);
-		Student student = session.get(Student.class, subjectRequest.getStudentId());
-		Subject subject = session.get(Subject.class, subjectRequest.getSubjectId());
+		SubjectRequest subjectRequest = getSession().get(SubjectRequest.class, subjectRequestId);
+		Student student = getSession().get(Student.class, subjectRequest.getStudentId());
+		Subject subject = getSession().get(Subject.class, subjectRequest.getSubjectId());
 		
 		student.getStudentSubjects().add(subject);
 		student.getSubjectRequests().remove(subjectRequest);
+		updateStudent(student);
 		
-		txn.commit();
-		session.close();
 	}
 	
 	@Override
 	public void removeSubjectRequestByRequestId(Long subjectRequestId) {
-		Session session = sessionFactory.openSession();
-		Transaction txn = session.beginTransaction();
+//		Session session = sessionFactory.openSession();
+//		Transaction txn = session.beginTransaction();
 		
-		SubjectRequest subjectRequest = session.get(SubjectRequest.class, subjectRequestId);
-		Student student = session.get(Student.class, subjectRequest.getStudentId());
+		SubjectRequest subjectRequest = getSession().get(SubjectRequest.class, subjectRequestId);
+		Student student = getSession().get(Student.class, subjectRequest.getStudentId());
 		
 		student.getSubjectRequests().remove(subjectRequest);
+		updateStudent(student);
 		
-		txn.commit();
-		session.close();
+//		txn.commit();
+//		session.close();
 	}
 	
 	@Override

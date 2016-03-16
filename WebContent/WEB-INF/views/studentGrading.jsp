@@ -12,6 +12,8 @@
 </head>
 <body>
 	
+	<jsp:include page="/WEB-INF/views/fragments/navbar.jsp" />
+	
 	<h4>Student <c:out value="${student.name}" /> <c:out value="${student.lastName}" /></h4>
 		
 	<h5>Subject <c:out value="${subject.subjectName}" /></h5>
@@ -36,12 +38,11 @@
 			</div>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/><br />
           
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button> 
+          <button class="btn btn-sm btn-primary" type="submit">Submit</button> 
 		</form>
 		
-		<p>Add Absence for this subject:</p>
 		<spring:url value="/addAbsenceToStudent?student=${student.id}&subject=${subject.id}" var="absenceUrl" />
-		<a href="${absenceUrl}"><c:out value="${subject.subjectName}"/></a>
+		<a href="${absenceUrl}">Add Absence for this subject: <c:out value="${subject.subjectName}"/></a>
 	
 </body>
 </html>

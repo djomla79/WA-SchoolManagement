@@ -11,6 +11,8 @@
 </head>
 <body>
 	
+	<jsp:include page="/WEB-INF/views/fragments/navbar.jsp" />
+	
 	<h3>Welcome Professor <c:out value="${loggedProfessor.name}"/> <c:out value="${loggedProfessor.lastName}"/></h3>
 	
 	<br>

@@ -11,10 +11,14 @@
 <title>addSubjectsToProfessor</title>
 </head>
 <body>
-	<p>addSubjectsToProfessor</p>
 	
-		<table class="table">
-			<thead class="thead-default">
+	<jsp:include page="/WEB-INF/views/fragments/admin-navbar.jsp" />
+	
+	<div class="container">
+		<div class="header1">addSubjectsToProfessor</div>
+		
+		<table class="table table-striped">
+			<thead>
 				<tr>
 					<th>Professor</th>
 					<th>Professor's subjects</th>
@@ -39,6 +43,13 @@
 					</tr>
 				</c:forEach>
 			</tbody>
+			<tfoot>
+		     <tr>
+		       <td colspan="3" style="text-align: center;">The end</td>
+		     </tr>
+	    	</tfoot>
 		</table>
+	</div>
+   
 </body>
 </html>

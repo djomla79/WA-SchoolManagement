@@ -25,7 +25,8 @@ public class GradeDaoImpl extends GenericDaoImpl<Grade, Long> implements GradeDa
 		String hql = "SELECT avg(grade.gradeValue) FROM Grade grade WHERE grade.student=:studentId";
 		Query query = getSession().createQuery(hql);
 		query.setLong("studentId", student.getId());
-		return (double) query.uniqueResult();
+		/** If it's not checked throws NullPointerException */
+		return query.uniqueResult() != null ? (double) query.uniqueResult() : 0.0;
 	}
 	
 	@Override
@@ -34,7 +35,8 @@ public class GradeDaoImpl extends GenericDaoImpl<Grade, Long> implements GradeDa
 		Query query = getSession().createQuery(hql);
 		query.setLong("studentId", student.getId());
 		query.setLong("subjectId", subject.getId());
-		return (double) query.uniqueResult();
+		/** If it's not checked throws NullPointerException */
+		return query.uniqueResult() != null ? (double) query.uniqueResult() : 0.0;
 	}
 	
 	@SuppressWarnings("unchecked")

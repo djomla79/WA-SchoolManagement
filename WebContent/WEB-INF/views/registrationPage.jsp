@@ -13,6 +13,8 @@
 </head>
 <body>
 	
+	<jsp:include page="/WEB-INF/views/fragments/admin-navbar.jsp" />
+	
 	<h5>Register Admin</h5>
 	<spring:url value="/registerAdmin" var="formUrl" />
     <form:form modelAttribute="user" action="${formUrl}" method="POST">

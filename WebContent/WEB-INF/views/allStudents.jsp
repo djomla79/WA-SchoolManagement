@@ -12,6 +12,8 @@
 </head>
 <body>
 	
+	<jsp:include page="/WEB-INF/views/fragments/navbar.jsp" />
+	
 	<h3>Students</h3>
 
 	<table class="table">

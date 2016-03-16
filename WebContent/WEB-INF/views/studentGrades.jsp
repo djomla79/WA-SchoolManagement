@@ -10,6 +10,9 @@
 	<title>Student Grades</title>
 </head>
 <body>
+	
+	<jsp:include page="/WEB-INF/views/fragments/navbar.jsp" />
+	
 	<h3>Student: <c:out value="${student.name}"/> <c:out value="${student.lastName}"/></h3>
 	
 	<table class="table">

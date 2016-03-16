@@ -68,6 +68,7 @@ public class StudentController {
 		
 		model.addAttribute("student", student);
 		model.addAttribute("subject", subject);
+		model.addAttribute("absences", absenceDao.getStudentAbsences(student, subject));
 		model.addAttribute("grades", gradeDao.getStudentGradesByStudentAndSubjectId(student, subject));
 		model.addAttribute("subjectAverage", gradeDao.getStudentSubjectAverageGradesById(student, subject));
 		
@@ -123,9 +124,9 @@ public class StudentController {
 		
 		Subject subject = subjectDao.getSubjectById(subjectId);
 		Student student = studentDao.getStudentById(studentId);
-		Grade grade = new Grade();
 		
 		if (gradeValue >= 6 || gradeValue <= 10) {
+			Grade grade = new Grade();
 			grade.setSubject(subject);
 			grade.setStudent(student);
 			grade.setGradeValue(gradeValue);

@@ -5,8 +5,6 @@
     </div>
     <div>
       <ul class="nav navbar-nav">
-        <li><a href="${pageContext.request.contextPath}/">Home Page</a></li>
-        <li><a href="${pageContext.request.contextPath}/admin">Admin page</a></li>
         <li><a href="${pageContext.request.contextPath}/logout">Log out</a></li>
 	    </ul>
     </div>

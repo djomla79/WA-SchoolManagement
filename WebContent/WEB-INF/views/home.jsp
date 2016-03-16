@@ -13,12 +13,16 @@
 <title>Home Page</title>
 </head>
 <body>
+	
+	<jsp:include page="/WEB-INF/views/fragments/home-navbar.jsp" />
+	
+	
+	
 	<h4>Home</h4>
 	
 	<p><a href="<spring:url value="/admin"/>">Administrator page</a></p>
 	<p><a href="<spring:url value="/accountProf"/>">Professor page</a></p>
 	<p><a href="<spring:url value="/accountStudent"/>">Student page</a></p>
-	<p><a href="<spring:url value="/logout" />">Log Out</a></p>
 	
 </body>
 </html>

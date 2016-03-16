@@ -11,6 +11,8 @@
 </head>
 <body>
 	
+	<jsp:include page="/WEB-INF/views/fragments/navbar.jsp" />
+	
 	<h4>Student <c:out value="${student.name}" /> <c:out value="${student.lastName}" /></h4>
 		
 		<p>Username: <c:out value="${student.username}" /> Password: <c:out value="${student.password}" /></p>
@@ -20,7 +22,10 @@
 	<c:forEach items="${grades}" var="grade">		
 		<c:out value="${grade.gradeValue}" />, 
 	</c:forEach>
+	
 	<h5>Average grades for this subject: <c:out value="${subjectAverage}" /></h5>
+	
+	<h5>Absences for this subject: <c:out value="${absences}" /></h5>
 	
 </body>
 </html>
