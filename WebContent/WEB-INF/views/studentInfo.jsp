@@ -13,19 +13,21 @@
 	
 	<jsp:include page="../fragments/navbar.jsp" />
 	
-	<h4>Student <c:out value="${student.name}" /> <c:out value="${student.lastName}" /></h4>
+	<div class="well"><h4>Student <c:out value="${student.name}" /> <c:out value="${student.lastName}" /></h4></div>
 		
-		<p>Username: <c:out value="${student.username}" /> Password: <c:out value="${student.password}" /></p>
+	<div class="well>">
+		<h5>Username: <c:out value="${student.username}" /> Password: <c:out value="${student.password}" /></h5>
+	</div>
 		
-	<h5>Subject: <c:out value="${subject.subjectName}" /></h5>
-	<h5>Grades: </h5>
-	<c:forEach items="${grades}" var="grade">		
-		<c:out value="${grade.gradeValue}" />, 
-	</c:forEach>
+	<div class="well"><h4>Subject: <c:out value="${subject.subjectName}" /></h4></div>
+	<div class="well"><h4>Grades: </h4>
+		<c:forEach items="${grades}" var="grade">		
+			<c:out value="${grade.gradeValue}" />, 
+		</c:forEach>
+	</div>
+	<div class="well"><h4>Average grades for this subject: <c:out value="${subjectAverage}" /></h4></div>
 	
-	<h5>Average grades for this subject: <c:out value="${subjectAverage}" /></h5>
-	
-	<h5>Absences for this subject: <c:out value="${absences}" /></h5>
+	<div class="well"><h4>Absences for this subject: <c:out value="${absences}" /></h4></div>
 	
 </body>
 </html>

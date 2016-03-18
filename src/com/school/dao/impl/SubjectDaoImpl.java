@@ -1,7 +1,10 @@
 package com.school.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
+import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -78,4 +81,12 @@ public class SubjectDaoImpl extends GenericDaoImpl<Subject, Long> implements Sub
 		updateSubject(subject);
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Subject> getSubjectsNotOfThisStudent(Student student) {
+		String hql = "SELECT subject.* FROM Subject subject WHERE id NOT IN (SELECT subject_id FROM student_subject WHERE student_id=:studentId)";
+		Query query = getSession().createSQLQuery(hql).addEntity(Subject.class);
+		query.setLong("studentId", student.getId());
+		return query.list();
+	}
 }

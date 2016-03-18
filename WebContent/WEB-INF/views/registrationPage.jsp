@@ -14,14 +14,11 @@
 <body>
 	
 	<jsp:include page="../fragments/admin-navbar.jsp" />
-	
-	<h5>Register Admin</h5>
+	<br><br>
 	<div class="container">
-      <div class="container1">
-      		
+		<div class="header1"><h5>Register Admin</h5></div>
       		<spring:url value="/registerAdmin" var="formUrl" />
     		<form:form modelAttribute="user" action="${formUrl}" method="POST">
-          
 		          <div>
 					  <label>Name: </label><br />
 			          <form:input path="name" name="name" type="text" /><br />
@@ -38,12 +35,11 @@
 		          <button class="btn btn-sm btn-primary" type="submit">Submit</button> 
 		          
 		     </form:form>
-
-		</div>
 	</div><br>
-    <h5>Register Professor</h5>
+	
+    
     <div class="container">
-      <div class="container1">
+      <div class="header1"><h5>Register Professor</h5></div>
       		
       	  <spring:url value="/registerProfessor" var="formUrl" />
 	      <form:form modelAttribute="user" action="${formUrl}" method="POST">
@@ -64,12 +60,10 @@
 	            <button class="btn btn-sm btn-primary" type="submit">Submit</button> 
 	          
 	        </form:form>
-
-		</div>
 	</div><br>
-    <h5>Register Student</h5>
+    
     <div class="container">
-    	<div class="container1">
+    	<div class="header1"><h5>Register Student</h5></div>
 	    	<spring:url value="/registerStudent" var="formUrl" />
 	        <form:form modelAttribute="user" action="${formUrl}" method="POST">
 	          
@@ -97,7 +91,6 @@
 	              <button class="btn btn-sm btn-primary" type="submit">Submit</button> 
 	          
 	          </form:form>
-		  </div>
 	  </div>
     
 </body>

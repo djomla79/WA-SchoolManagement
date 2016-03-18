@@ -13,28 +13,39 @@
 	
 	<jsp:include page="../fragments/navbar.jsp" />
 	
-	<h3>Student: <c:out value="${student.name}"/> <c:out value="${student.lastName}"/></h3>
+	<br><br><br>
+	<div class="well">
+		<h3>Student: <c:out value="${student.name}"/> <c:out value="${student.lastName}"/></h3>
+	</div>
 	
-	<table class="table">
-		<thead class="thead-default"> 
-			<tr>
-				<th>Subject</th>
-				<th>Grades</th>
-				<th>Grades Average</th>
-				<th>Absences</th>
-			</tr>
-		</thead>
-		<tbody>
-				<tr>
-					<td><c:out value="${subject.subjectName}"/></td>
-					<td><c:forEach items="${grades}" var="grade">
-							<c:out value="${grade.gradeValue}"/>, 
-					</c:forEach></td>
-					<td><c:out value="${subjectAverage}"/></td>
-					<td><c:out value="${absences}"/></td>
-				</tr>
-		</tbody>
-	</table>
+	<div class="container">
+		<div class="header1"><h4>Your Subject's Grades and Absences</h4></div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Subject</th>
+						<th>Grades</th>
+						<th>Grades Average</th>
+						<th>Absences</th>
+					</tr>
+				</thead>
+				<tbody>
+						<tr>
+							<td><c:out value="${subject.subjectName}"/></td>
+							<td><c:forEach items="${grades}" var="grade">
+									<c:out value="${grade.gradeValue}"/>, 
+							</c:forEach></td>
+							<td><c:out value="${subjectAverage}"/></td>
+							<td><c:out value="${absences}"/></td>
+						</tr>
+				</tbody>
+				<tfoot>
+				     <tr>
+				       <td colspan="3" style="text-align: center;">The end of the line</td>
+				     </tr>
+				</tfoot>
+			</table>
+	</div>
 	
 </body>
 </html>

@@ -15,9 +15,8 @@
 	
 	<jsp:include page="../fragments/admin-navbar.jsp" />
 	
-	<div class="row">
-         <div class="well"><h3>Add new Subject</h3></div>
-     </div>
+	<br><br>
+    <div class="well"><h3>Add new Subject</h3></div>
 	
     <div class="container">
       <div class="container1">
@@ -26,8 +25,8 @@
 	    <form:form modelAttribute="subject" action="${formUrl}" method="POST">
 			
 			<label>Input a Subject's Name:</label><br>
-			<form:input type="text" path="subjectName" name="subjectName" />
-			<input type="submit" />
+			<form:input type="text" path="subjectName" name="subjectName" /><br>
+			<input type="submit" value="Submit" class="btn btn-sm btn-primary"/>
 				
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
 				

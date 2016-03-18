@@ -14,6 +14,7 @@
 	
 	<jsp:include page="../fragments/admin-navbar.jsp" />
 	
+	<br><br><br>
 	<div class="container">
 		<div class="header1">addSubjectsToProfessor</div>
 		

@@ -44,7 +44,8 @@ public class StudentController {
 		
 		model.addAttribute("student", student);
 		model.addAttribute("totalAverage", gradeDao.getStudentTotalAverageGradesById(student));
-		model.addAttribute("allSubjects", subjectDao.getAll());
+		model.addAttribute("subjects", subjectDao.getSubjectsNotOfThisStudent(student));
+		//model.addAttribute("allSubjects", subjectDao.getAll());
 		
 		return "studentAccount";
 	}

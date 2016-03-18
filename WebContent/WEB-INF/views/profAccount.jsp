@@ -13,22 +13,15 @@
 	
 	<jsp:include page="../fragments/navbar.jsp" />
 	
-	<div class="row">
-	    <div class="well">
-	    	<h3>Welcome Professor <c:out value="${loggedProfessor.name}"/> <c:out value="${loggedProfessor.lastName}"/></h3>
-	    </div>
-    </div>
-	<br>
-	<div class="row">
-	    <div class="well">
-	    	<h4>Your Subjects</h4>
-	    </div>
+	<br><br><br>
+	<div class="well">
+	    <h3>Welcome Professor <c:out value="${loggedProfessor.name}"/> <c:out value="${loggedProfessor.lastName}"/></h3>
     </div>
 	
 	<div class="container">
-      <div class="container1">
-		<table class="table">
-				<thead class="thead-default">
+      <div class="header1"><h4>Your Subjects</h4></div>
+		<table class="table table-striped">
+				<thead>
 					<tr>
 						<th>Subject</th>
 						<th>This subject's students</th>
@@ -44,8 +37,12 @@
 						</tr>
 					</c:forEach>
 				</tbody>
+				<tfoot>
+			     <tr>
+			       <td colspan="2" style="text-align: center;">The end of the line</td>
+			     </tr>
+			    </tfoot>
 			</table>
-		</div>
 	</div>
 </body>
 </html>

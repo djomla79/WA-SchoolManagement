@@ -15,69 +15,66 @@
     
     <jsp:include page="../fragments/admin-navbar.jsp" />
 	
-	<div class="row">
-         <div class="well">
-         	<h3>Welcome Administrator <c:out value="${admin.name}"/> <c:out value="${admin.lastName}"/></h3>
-         </div>
+	<br><br><br>
+    <div class="well">
+         <h3>Welcome Administrator <c:out value="${admin.name}"/> <c:out value="${admin.lastName}"/></h3>
     </div>	 
 	
-	<div class="row">
-       	<div class="well"><h4><a href="<spring:url value="/registerUser"/>">User Registration</a></h4></div>
-    	</div>
-	<div class="row">
-       	<div class="well"><h4><a href="<spring:url value="/addingSubject"/>">Add a new Subject</a></h4></div>
-    	</div>
-	<div class="row">
-       	<div class="well"><h4><a href="<spring:url value="/addSubjectToProf"/>">Add a Subject to Professor</a></h4></div>
-    	</div>
-
-	<h4>Professors</h4>
+	<div class="well">
+	    <h4><a href="<spring:url value="/registerUser"/>">User Registration</a></h4>
+	    <h4><a href="<spring:url value="/addingSubject"/>">Add a new Subject</a></h4>
+	    <h4><a href="<spring:url value="/addSubjectToProf"/>">Add a Subject to Professor</a></h4>
+    </div>
+    
+	<div class="container">
+		<div class="header1"><h4>Professors</h4></div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Professor</th>
+						<th>Professor Info</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${professors}" var="prof">
+						<tr>
+							<td><c:out value="${prof.name}"/> <c:out value="${prof.lastName}"/></td>
+							<td><c:url value="/getProfessorWithSubjects/${prof.id}" var="url"/>
+								<a href="${url}">Professor info</a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+	</div>
 	
-	<table class="table">
-		<thead class="thead-default">
-			<tr>
-				<th>Professor</th>
-				<th>Professor Info</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${professors}" var="prof">
-				<tr>
-					<td><c:out value="${prof.name}"/> <c:out value="${prof.lastName}"/></td>
-					<td><c:url value="/getProfessorWithSubjects/${prof.id}" var="url"/>
-						<a href="${url}">Professor info</a></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+	<div class="container">
+		<div class="header1"><h4>Requests</h4></div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Students' Info</th>
+						<th>Subject's Info</th>
+						<th>Accept Request</th>
+						<th>Decline Request</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${subjectRequests}" var="subjectRequest">
+						<tr>
+							<td><c:out value="${subjectRequest.studentId}"></c:out>
+								<c:url value="/getStudentWithSubjects/${subjectRequest.studentId}" var="url"/>
+					 			<a href="${url}">Student's info</a></td>
+							<td><c:url value="/getSubject/${subjectRequest.subjectId}" var="url"/>
+								<a href="${url}">Subject's info</a></td>
+							<td><c:url value="/acceptSubjectRequest/${subjectRequest.id}" var="url"/>
+							 	<a href="${url}">Accept request</a></td>
+							<td><c:url value="/declineSubjectRequest/${subjectRequest.id}" var="url"/>
+								<a href="${url}">Decline request</a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+	</div>
 	
-	<h4>Requests</h4>
-	
-	<table class="table">
-		<thead class="thead-default">
-			<tr>
-				<th>Students' Info</th>
-				<th>Subject's Info</th>
-				<th>Accept Request</th>
-				<th>Decline Request</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${subjectRequests}" var="subjectRequest">
-				<tr>
-					<td><c:out value="${subjectRequest.studentId}"></c:out>
-						<c:url value="/getStudentWithSubjects/${subjectRequest.studentId}" var="url"/>
-			 			<a href="${url}">Student's info</a></td>
-					<td><c:url value="/getSubject/${subjectRequest.subjectId}" var="url"/>
-						<a href="${url}">Subject's info</a></td>
-					<td><c:url value="/acceptSubjectRequest/${subjectRequest.id}" var="url"/>
-					 	<a href="${url}">Accept request</a></td>
-					<td><c:url value="/declineSubjectRequest/${subjectRequest.id}" var="url"/>
-						<a href="${url}">Decline request</a></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.school.dao.interfaces;
 
+import java.util.List;
+
 import com.school.beans_model.Professor;
 import com.school.beans_model.Student;
 import com.school.beans_model.Subject;
@@ -24,5 +26,7 @@ public interface SubjectDao extends GenericDao<Subject, Long> {
 	void addStudentToSubject(Student studentById, Long subjectId);
 
 	Subject getSubjectWithProfessor(Long subjectId);
+
+	List<Subject> getSubjectsNotOfThisStudent(Student student);
 	
 }

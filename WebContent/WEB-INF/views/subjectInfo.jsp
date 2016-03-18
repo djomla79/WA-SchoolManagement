@@ -13,9 +13,12 @@
 	
 	<jsp:include page="../fragments/navbar.jsp" />
 	
-	<h4>Subject: <c:out value="${subject.subjectName}" /></h4>
+	<br><br>
+	<div class="well"><h4>Subject: <c:out value="${subject.subjectName}" /></h4></div>
 		
-	<h4>Professor for this subject: <c:out value="${professor.name}" /> <c:out value="${professor.lastName}" /></h4>
+	<div class="well">
+		<h4>Professor for this subject: <c:out value="${professor.name}" /> <c:out value="${professor.lastName}" /></h4>
+	</div>
 	
 </body>
 </html>

@@ -14,15 +14,13 @@
 	
 	<jsp:include page="../fragments/navbar.jsp" />
 	
-	<div class="row">
-         <div class="well"><h3>Students</h3></div>
-     </div>
-	
+	<br><br><br>
 	<div class="container">
       <div class="container1">
-	
-		<table class="table">
-			<thead class="thead-default">
+		<div class="header1"><h3>Students</h3></div>
+		
+		<table class="table table-striped">
+			<thead>
 				<tr>
 					<th>Student</th>
 					<th>Info</th>
@@ -42,6 +40,11 @@
 					</tr>
 				</c:forEach>
 			</tbody>
+			<tfoot>
+		     <tr>
+		       <td colspan="3" style="text-align: center;">The end of the line</td>
+		     </tr>
+		    </tfoot>
 		</table>
 		
 		</div>

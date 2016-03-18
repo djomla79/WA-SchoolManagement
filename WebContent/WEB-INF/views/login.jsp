@@ -13,9 +13,8 @@
 	
 	<jsp:include page="../fragments/navbar.jsp" />
 	
-	<div class="row">
-         <div class="well"><h3>Enter your username and password</h3></div>
-    </div>
+	<br><br><br>
+    <div class="well"><h3>Enter your username and password</h3></div>
 	
     <div class="container">
       <div class="container1">
