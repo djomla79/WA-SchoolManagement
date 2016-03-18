@@ -35,8 +35,7 @@ public class ProfessorDaoImpl extends GenericDaoImpl<Professor, Long> implements
 	public Professor getProfessorByUsername(String username) {
 		Criteria criteria = getSession().createCriteria(Professor.class);
 		criteria.add(Restrictions.eq("username", username));
-		Professor prof = (Professor) criteria.uniqueResult();
-		return prof;
+		return (Professor) criteria.uniqueResult();
 	}
 
 	@Override

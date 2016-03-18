@@ -2,8 +2,6 @@ package com.school.dao.impl;
 
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
-//import org.hibernate.Session;
-//import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,8 +38,7 @@ public class StudentDaoImpl extends GenericDaoImpl<Student, Long> implements Stu
 	public Student getStudentByUsername(String username) {
 		Criteria criteria = getSession().createCriteria(Student.class);
 		criteria.add(Restrictions.eq("username", username));
-		Student student = (Student) criteria.uniqueResult();
-		return student;
+		return (Student) criteria.uniqueResult();
 	}
 	
 	@Override
@@ -125,17 +122,12 @@ public class StudentDaoImpl extends GenericDaoImpl<Student, Long> implements Stu
 	
 	@Override
 	public void removeSubjectRequestByRequestId(Long subjectRequestId) {
-//		Session session = sessionFactory.openSession();
-//		Transaction txn = session.beginTransaction();
 		
 		SubjectRequest subjectRequest = getSession().get(SubjectRequest.class, subjectRequestId);
 		Student student = getSession().get(Student.class, subjectRequest.getStudentId());
-		
 		student.getSubjectRequests().remove(subjectRequest);
 		updateStudent(student);
 		
-//		txn.commit();
-//		session.close();
 	}
 	
 	@Override

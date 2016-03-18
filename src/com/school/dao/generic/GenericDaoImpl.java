@@ -16,13 +16,13 @@ public abstract class GenericDaoImpl<E extends BaseEntity, K extends Serializabl
 	
 	private Class<E> persistentClass;
 	
+	@Autowired
+	public SessionFactory sessionFactory;
+	
+	
 	public GenericDaoImpl(Class<E> persistentClass) {
 		this.persistentClass = persistentClass;
 	}
-	
-	
-	@Autowired
-	public SessionFactory sessionFactory;
 	
 	public Session getSession() {
 		return sessionFactory.getCurrentSession();

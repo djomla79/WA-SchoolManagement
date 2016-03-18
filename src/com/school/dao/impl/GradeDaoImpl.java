@@ -15,6 +15,9 @@ import com.school.dao.interfaces.GradeDao;
 @Repository
 @Transactional
 public class GradeDaoImpl extends GenericDaoImpl<Grade, Long> implements GradeDao {
+	
+	private static final String STUDENT_ID = "studentId";
+	private static final String SUBJECT_ID = "subjectId";
 
 	public GradeDaoImpl() {
 		super(Grade.class);
@@ -24,7 +27,7 @@ public class GradeDaoImpl extends GenericDaoImpl<Grade, Long> implements GradeDa
 	public Double getStudentTotalAverageGradesById(Student student) {
 		String hql = "SELECT avg(grade.gradeValue) FROM Grade grade WHERE grade.student=:studentId";
 		Query query = getSession().createQuery(hql);
-		query.setLong("studentId", student.getId());
+		query.setLong(STUDENT_ID, student.getId());
 		/** If it's not checked throws NullPointerException */
 		return query.uniqueResult() != null ? (double) query.uniqueResult() : 0.0;
 	}
@@ -33,8 +36,8 @@ public class GradeDaoImpl extends GenericDaoImpl<Grade, Long> implements GradeDa
 	public Double getStudentSubjectAverageGradesById(Student student, Subject subject) {
 		String hql = "SELECT avg(grade.gradeValue) FROM Grade grade WHERE grade.student=:studentId AND subject=:subjectId";
 		Query query = getSession().createQuery(hql);
-		query.setLong("studentId", student.getId());
-		query.setLong("subjectId", subject.getId());
+		query.setLong(STUDENT_ID, student.getId());
+		query.setLong(SUBJECT_ID, subject.getId());
 		/** If it's not checked throws NullPointerException */
 		return query.uniqueResult() != null ? (double) query.uniqueResult() : 0.0;
 	}
@@ -44,7 +47,7 @@ public class GradeDaoImpl extends GenericDaoImpl<Grade, Long> implements GradeDa
 	public List<Grade> getStudentGradesById(Student student) {
 		String hql = "FROM Grade WHERE student=:studentId";
 		Query query = getSession().createQuery(hql);
-		query.setLong("studentId", student.getId());
+		query.setLong(STUDENT_ID, student.getId());
 		return query.list();
 	}
 	
@@ -53,8 +56,8 @@ public class GradeDaoImpl extends GenericDaoImpl<Grade, Long> implements GradeDa
 	public List<Grade> getStudentGradesByStudentAndSubjectId(Student student, Subject subject) {
 		String hql = "FROM Grade WHERE student=:studentId AND subject=:subjectId";
 		Query query = getSession().createQuery(hql);
-		query.setLong("studentId", student.getId());
-		query.setLong("subjectId", subject.getId());
+		query.setLong(STUDENT_ID, student.getId());
+		query.setLong(SUBJECT_ID, subject.getId());
 		return query.list();
 	}
 	

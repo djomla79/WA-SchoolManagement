@@ -23,9 +23,10 @@ import com.school.dao.interfaces.StudentDao;
 @Controller
 public class MyController {
 	
-	public static String homePage = "home";
-	public static String adminPage = "redirect:/admin";
-	public static String registrationPage = "registrationPage";
+	public static final String HOME_PAGE = "home";
+	public static final String LOGIN = "login";
+	public static final String ADMIN_PAGE = "redirect:/admin";
+	public static final String REGISTRATION_PAGE = "registrationPage";
 	
 	@Autowired
 	private ProfessorDao profDao;
@@ -39,12 +40,12 @@ public class MyController {
 	
 	@RequestMapping({"/", "/home"})
 	public String goHome() {
-		return homePage;
+		return HOME_PAGE;
 	}
 	
 	@RequestMapping("/login")
 	public String showLogin() {
-		return "login";
+		return LOGIN;
 	}
 	
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
@@ -53,12 +54,12 @@ public class MyController {
 		if (authentication != null) {
 			new SecurityContextLogoutHandler().logout(request, response, authentication);
 		}
-		return homePage;
+		return HOME_PAGE;
 	}
 	
 	@RequestMapping("/registerUser")
-	public String registrationPage(@ModelAttribute User user) {
-		return registrationPage;
+	public String showRegistrationPage(@ModelAttribute User user) {
+		return REGISTRATION_PAGE;
 	}
 	
 	@RequestMapping(value="/registerAdmin", method=RequestMethod.POST)
@@ -67,9 +68,9 @@ public class MyController {
 		admin.setEnabled(true);
 		admin.setAuthority("ADMIN");
 		if(adminDao.saveAdmin(admin) != null) {
-			return adminPage;
+			return ADMIN_PAGE;
 		}
-		return registrationPage;
+		return REGISTRATION_PAGE;
 	}
 	
 	@RequestMapping(value="/registerProfessor", method=RequestMethod.POST)
@@ -78,9 +79,9 @@ public class MyController {
 		prof.setEnabled(true);
 		prof.setAuthority("PROFESSOR");
 		if(profDao.saveProfessor(prof) != null) {
-			return adminPage;
+			return ADMIN_PAGE;
 		}
-		return registrationPage;
+		return REGISTRATION_PAGE;
 	}
 	
 	@RequestMapping(value="/registerStudent", method=RequestMethod.POST)
@@ -89,9 +90,9 @@ public class MyController {
 		student.setEnabled(true);
 		student.setAuthority("STUDENT");
 		if(studentDao.saveStudent(student) != null) {
-			return adminPage;
+			return ADMIN_PAGE;
 		}
-		return registrationPage;
+		return REGISTRATION_PAGE;
 	}
 	
 }

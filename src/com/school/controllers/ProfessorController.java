@@ -17,9 +17,10 @@ import com.school.dao.interfaces.SubjectDao;
 @Controller
 public class ProfessorController {
 	
+	private static final String PROFESSOR = "professor";
+	
 	@Autowired
 	private ProfessorDao profDao;
-	
 	@Autowired
 	private SubjectDao subjectDao;
 	
@@ -38,7 +39,7 @@ public class ProfessorController {
 		
 		Professor prof = profDao.getProfessorWithSubjectsById(profId);
 		List<Subject> subjects = prof.getSubjects();
-		model.addAttribute("professor", prof);
+		model.addAttribute(PROFESSOR, prof);
 		model.addAttribute("subjects", subjects);
 		
 		return "professor";
@@ -51,7 +52,7 @@ public class ProfessorController {
 		Professor prof = subject.getProfessor();
 		
 		model.addAttribute("subject", subject);
-		model.addAttribute("professor", prof);
+		model.addAttribute(PROFESSOR, prof);
 		
 		return "subjectInfo";
 		

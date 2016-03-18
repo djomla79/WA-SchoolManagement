@@ -22,8 +22,8 @@ import com.school.dao.interfaces.SubjectRequestDao;
 @Controller
 public class AdminController {
 	
-	public static String adminPage = "redirect:/admin";
-	public static String addSubject = "addSubject";
+	public static final String ADMIN_PAGE = "redirect:/admin";
+	public static final String ADD_SUBJECT = "addSubject";
 	
 	@Autowired
 	private AdminDao adminDao;
@@ -48,15 +48,15 @@ public class AdminController {
 	
 	@RequestMapping("/addingSubject")
 	public String addSubject(@ModelAttribute("subject") Subject subject) {
-		return addSubject;
+		return ADD_SUBJECT;
 	}
 	
 	@RequestMapping(value="/addSubject", method=RequestMethod.POST)
 	public String subjectAdded(Subject subject) {
 		if(subjectDao.saveSubject(subject) != null) {
-			return adminPage;			
+			return ADMIN_PAGE;			
 		}
-		return addSubject;
+		return ADD_SUBJECT;
 	}
 	
 	@RequestMapping("/addSubjectToProf")
@@ -74,7 +74,7 @@ public class AdminController {
 		profDao.addSubjectToProfessorById(profId, subjectDao.getSubjectById(subjectId));
 		subjectDao.addProfessorToSubjectById(profDao.getProfessorById(profId), subjectId);
 		
-		return adminPage;			
+		return ADMIN_PAGE;			
 	}
 	
 	@RequestMapping(value="/acceptSubjectRequest/{subjectRequestId}")
@@ -85,7 +85,7 @@ public class AdminController {
 	   studentDao.addSubjectToStudentByRequestId(subjectRequestId);
 	   subjectRequestDao.deleteSubjectRequest(subjectRequest);
 	
-	   return adminPage;
+	   return ADMIN_PAGE;
 	}
 	
 	@RequestMapping(value="/declineSubjectRequest/{subjectRequestId}")
@@ -96,7 +96,7 @@ public class AdminController {
 	   studentDao.removeSubjectRequestByRequestId(subjectRequestId);
 	   subjectRequestDao.deleteSubjectRequest(subjectRequest);
 	
-	   return adminPage;
+	   return ADMIN_PAGE;
 	}
 	
 }

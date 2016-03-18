@@ -23,9 +23,11 @@ import com.school.dao.interfaces.SubjectDao;
 @Controller
 public class StudentController {
 	
-	public static String accountStudent = "redirect:/accountStudent";
-	public static String accountProfessor = "redirect:/accountProf";
-	public static String studentGrading = "studentGrading";
+	public static final String STUDENT = "student";
+	public static final String SUBJECT = "subject";
+	public static final String ACCOUNT_STUDENT = "redirect:/accountStudent";
+	public static final String ACCOUNT_PROFESSOR = "redirect:/accountProf";
+	public static final String STUDENT_GRADING = "studentGrading";
 	
 	@Autowired
 	private StudentDao studentDao;
@@ -42,10 +44,9 @@ public class StudentController {
 		
 		Student student = studentDao.getStudentWithSubjects(principal.getName());
 		
-		model.addAttribute("student", student);
+		model.addAttribute(STUDENT, student);
 		model.addAttribute("totalAverage", gradeDao.getStudentTotalAverageGradesById(student));
 		model.addAttribute("subjects", subjectDao.getSubjectsNotOfThisStudent(student));
-		//model.addAttribute("allSubjects", subjectDao.getAll());
 		
 		return "studentAccount";
 	}
@@ -54,7 +55,7 @@ public class StudentController {
 	public String getSubjectWithStudents(@PathVariable Long subjectId, Model model) {
 		
 		Subject subject = subjectDao.getSubjectWithStudentsById(subjectId);
-		model.addAttribute("subject", subject);
+		model.addAttribute(SUBJECT, subject);
 		model.addAttribute("students", subject.getStudents());
 		
 		return "allStudents";
@@ -67,8 +68,8 @@ public class StudentController {
 		Student student = studentDao.getStudentById(studentId);
 		Subject subject = subjectDao.getSubjectById(subjectId);
 		
-		model.addAttribute("student", student);
-		model.addAttribute("subject", subject);
+		model.addAttribute(STUDENT, student);
+		model.addAttribute(SUBJECT, subject);
 		model.addAttribute("absences", absenceDao.getStudentAbsences(student, subject));
 		model.addAttribute("grades", gradeDao.getStudentGradesByStudentAndSubjectId(student, subject));
 		model.addAttribute("subjectAverage", gradeDao.getStudentSubjectAverageGradesById(student, subject));
@@ -83,10 +84,10 @@ public class StudentController {
 		Subject subject = subjectDao.getSubjectById(subjectId);
 		Student student = studentDao.getStudentById(studentId);
 		
-		model.addAttribute("student", student);
-		model.addAttribute("subject", subject);
+		model.addAttribute(STUDENT, student);
+		model.addAttribute(SUBJECT, subject);
 		
-		return studentGrading;
+		return STUDENT_GRADING;
 	}
 	
 	@RequestMapping(value="/getSubjectToStudent", params={"student", "subject"})
@@ -96,7 +97,7 @@ public class StudentController {
 		studentDao.addSubjectToStudent(studentId, subjectDao.getSubjectById(subjectId));
 		subjectDao.addStudentToSubject(studentDao.getStudentById(studentId), subjectId);
 		
-		return accountStudent;
+		return ACCOUNT_STUDENT;
 	}
 	
 	@RequestMapping(value="/sendSubjectRequest", params={"student", "subject"})
@@ -113,7 +114,7 @@ public class StudentController {
 		student.getSubjectRequests().add(request);
 		studentDao.mergeStudent(student);
 		
-		return accountStudent;
+		return ACCOUNT_STUDENT;
 	}
 	
 	@RequestMapping(value="/addGradeToStudent",
@@ -132,9 +133,9 @@ public class StudentController {
 			grade.setStudent(student);
 			grade.setGradeValue(gradeValue);
 			studentDao.addGradeToStudent(studentId, grade);
-			return studentGrading;
+			return STUDENT_GRADING;
 		} else {
-			return accountProfessor;
+			return ACCOUNT_PROFESSOR;
 		}
 		
 	}
@@ -151,7 +152,7 @@ public class StudentController {
 		absence.setAbsenceCounter(1);
 		studentDao.addAbsenceToStudent(studentId, absence);
 		
-		return accountProfessor;
+		return ACCOUNT_PROFESSOR;
 	}
 	
 	@RequestMapping(value="/getGradesAndAbsences", params={"student", "subject"})
@@ -161,8 +162,8 @@ public class StudentController {
 		Student student = studentDao.getStudentById(studentId);
 		Subject subject = subjectDao.getSubjectById(subjectId);
 		
-		model.addAttribute("student", student);
-		model.addAttribute("subject", subject);
+		model.addAttribute(STUDENT, student);
+		model.addAttribute(SUBJECT, subject);
 		model.addAttribute("absences", absenceDao.getStudentAbsences(student, subject));
 		model.addAttribute("grades", gradeDao.getStudentGradesByStudentAndSubjectId(student, subject));
 		model.addAttribute("subjectAverage", gradeDao.getStudentSubjectAverageGradesById(student, subject));

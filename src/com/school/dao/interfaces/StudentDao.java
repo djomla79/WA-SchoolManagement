@@ -43,7 +43,5 @@ public interface StudentDao extends GenericDao<Student, Long> {
 	void addGradeToStudent(Long studentId, Grade grade);
 
 	void removeSubjectRequestByRequestId(Long subjectRequestId);
-
-	//Student getStudentWithAbsencesBySubject(Subject subject);
 	
 }

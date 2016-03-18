@@ -22,8 +22,6 @@ public interface ProfessorDao extends GenericDao<Professor, Long> {
 
 	void addSubjectToProfessorById(Long profId, Subject subject);
 	
-	//boolean addSubjectToProfessor(Long profId, Subject subject);
-	
 	Professor getProfessorWithSubjectsById(Long profId);
 
 	Professor getProfessorById(Long profId);

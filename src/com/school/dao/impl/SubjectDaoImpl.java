@@ -37,8 +37,7 @@ public class SubjectDaoImpl extends GenericDaoImpl<Subject, Long> implements Sub
 	public Subject getSubjectByName(String subjectName) {
 		Criteria criteria = getSession().createCriteria(Subject.class);
 		criteria.add(Restrictions.eq("subjectName", subjectName));
-		Subject subject = (Subject) criteria.uniqueResult();
-		return subject;
+		return (Subject) criteria.uniqueResult();
 	}
 	
 	@Override
