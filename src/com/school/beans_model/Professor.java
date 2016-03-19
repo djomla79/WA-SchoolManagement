@@ -24,7 +24,7 @@ public class Professor extends User {
 		this.setName(user.getName());
 		this.setLastName(user.getLastName());
 		this.setUsername(user.getUsername());
-		this.setPassword(user.getPassword());
+		this.setTransientPassword(user.getTransientPassword());
 	}
 	
 	public List<Subject> getSubjects() {

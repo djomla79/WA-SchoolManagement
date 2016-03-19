@@ -17,6 +17,7 @@ public class AdminDaoImpl extends GenericDaoImpl<Admin, Long> implements AdminDa
 
 	@Override
 	public Admin saveAdmin(Admin admin) {
+		admin.setEncodedPassword(encoder.encode(admin.getTransientPassword()));
 		super.saveEntity(admin);
 		return admin;
 	}

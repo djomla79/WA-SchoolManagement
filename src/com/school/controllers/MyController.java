@@ -2,12 +2,15 @@ package com.school.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,23 +22,29 @@ import com.school.beans_model.User;
 import com.school.dao.interfaces.AdminDao;
 import com.school.dao.interfaces.ProfessorDao;
 import com.school.dao.interfaces.StudentDao;
+import com.school.dao.interfaces.UserDao;
 
 @Controller
 public class MyController {
 	
 	public static final String HOME_PAGE = "home";
 	public static final String LOGIN = "login";
+	public static final String USERNAME = "username";
+	public static final String MESSAGES = "messages";
+	public static final String MESSAGE_OK = "messageOk";
+	public static final String SUCCES_REGISTER = " is successfully registered.";
+	public static final String DUPLICATE_KEY = "DuplicateKey.user.username";
 	public static final String ADMIN_PAGE = "redirect:/admin";
 	public static final String REGISTRATION_PAGE = "registrationPage";
 	
 	@Autowired
 	private ProfessorDao profDao;
-	
 	@Autowired
 	private StudentDao studentDao;
-	
 	@Autowired
 	private AdminDao adminDao;
+	@Autowired
+	private UserDao userDao;
 	
 	
 	@RequestMapping({"/", "/home"})
@@ -63,34 +72,56 @@ public class MyController {
 	}
 	
 	@RequestMapping(value="/registerAdmin", method=RequestMethod.POST)
-	public String registerAdmin(User user) {
-		Admin admin = new Admin(user);
-		admin.setEnabled(true);
-		admin.setAuthority("ADMIN");
-		if(adminDao.saveAdmin(admin) != null) {
-			return ADMIN_PAGE;
+	public String registerAdmin(@Valid User user, BindingResult result, Model model) {
+		
+		if (!userDao.isUserAlreadyExists(user.getUsername())) {
+			result.rejectValue(USERNAME, DUPLICATE_KEY);
+			return REGISTRATION_PAGE;
+		}
+		if(!result.hasErrors()) {
+			Admin admin = new Admin(user);
+			admin.setEnabled(true);
+			admin.setAuthority("ADMIN");
+			adminDao.saveAdmin(admin);
+			model.addAttribute(MESSAGE_OK, "Admin "+user.getName()+" "+user.getLastName()+SUCCES_REGISTER);
+			return MESSAGES;
 		}
 		return REGISTRATION_PAGE;
 	}
 	
 	@RequestMapping(value="/registerProfessor", method=RequestMethod.POST)
-	public String registerProfessor(User user) {
-		Professor prof = new Professor(user);
-		prof.setEnabled(true);
-		prof.setAuthority("PROFESSOR");
-		if(profDao.saveProfessor(prof) != null) {
-			return ADMIN_PAGE;
+	public String registerProfessor(@Valid User user, BindingResult result, Model model) {
+		
+		if (!userDao.isUserAlreadyExists(user.getUsername())) {
+			result.rejectValue(USERNAME, DUPLICATE_KEY);
+			return REGISTRATION_PAGE;
+		}
+		if (!result.hasErrors()) {
+			Professor prof = new Professor(user);
+			prof.setEnabled(true);
+			prof.setAuthority("PROFESSOR");
+			profDao.saveProfessor(prof);
+			model.addAttribute(MESSAGE_OK, "Professor "+user.getName()+" "+user.getLastName()+SUCCES_REGISTER);
+			return MESSAGES;
 		}
 		return REGISTRATION_PAGE;
 	}
 	
+
 	@RequestMapping(value="/registerStudent", method=RequestMethod.POST)
-	public String registerStudent(User user) {
-		Student student = new Student(user);
-		student.setEnabled(true);
-		student.setAuthority("STUDENT");
-		if(studentDao.saveStudent(student) != null) {
-			return ADMIN_PAGE;
+	public String registerStudent(@Valid User user, BindingResult result, Model model) {
+		
+		if (!userDao.isUserAlreadyExists(user.getUsername())) {
+			result.rejectValue(USERNAME, DUPLICATE_KEY);
+			return REGISTRATION_PAGE;
+		}
+		if(!result.hasErrors()) {
+			Student student = new Student(user);
+			student.setEnabled(true);
+			student.setAuthority("STUDENT");
+			studentDao.saveStudent(student);
+			model.addAttribute(MESSAGE_OK, "Student "+user.getName()+" "+user.getLastName()+SUCCES_REGISTER);
+			return MESSAGES;
 		}
 		return REGISTRATION_PAGE;
 	}

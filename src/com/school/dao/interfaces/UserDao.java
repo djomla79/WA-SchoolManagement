@@ -7,4 +7,6 @@ public interface UserDao extends GenericDao<User, Long> {
 
 	User getUserByUsername(String username);
 
+	boolean isUserAlreadyExists(String username);
+
 }

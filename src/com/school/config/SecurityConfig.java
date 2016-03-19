@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-//import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -16,16 +16,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private DataSource dataSource;
-	
-//	@Autowired
-//	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		//auth.inMemoryAuthentication();   // za hardcodovanje user-a
+		
 		auth
 		    .jdbcAuthentication()
 			.dataSource(dataSource)
+			.passwordEncoder(passwordEncoder)
 			.usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE binary username=?")
 			.authoritiesByUsernameQuery("SELECT username, authority FROM users WHERE binary username=?")
 			.rolePrefix("ROLE_");
@@ -71,12 +71,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.passwordParameter("password")
 			.failureUrl("/login?loginerror=true")
 			.defaultSuccessUrl("/")
-//		.and()
-//			.exceptionHandling().accessDeniedPage("/accessDenied")
 		.and()
 			.logout()
 			.logoutUrl("/logout")
 			.logoutSuccessUrl("/");
+//		.and()
+//		.exceptionHandling().accessDeniedPage("/accessDenied")
 		
 	}
 	

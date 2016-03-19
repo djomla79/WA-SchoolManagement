@@ -21,5 +21,12 @@ public class UserDaoImpl extends GenericDaoImpl<User, Long> implements UserDao {
 		criteria.add(Restrictions.eq("username", username));
 		return (User) criteria.uniqueResult();
 	}
+	
+	@Override
+	public boolean isUserAlreadyExists(String username) {
+		Criteria criteria = getSession().createCriteria(User.class);
+		criteria.add(Restrictions.eq("username", username));
+		return criteria.uniqueResult() == null ? true : false;
+	}
 
 }

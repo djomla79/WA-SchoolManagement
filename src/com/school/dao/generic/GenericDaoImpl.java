@@ -7,6 +7,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.school.commons.BaseEntity;
@@ -18,6 +19,8 @@ public abstract class GenericDaoImpl<E extends BaseEntity, K extends Serializabl
 	
 	@Autowired
 	public SessionFactory sessionFactory;
+	@Autowired
+	public PasswordEncoder encoder;
 	
 	
 	public GenericDaoImpl(Class<E> persistentClass) {

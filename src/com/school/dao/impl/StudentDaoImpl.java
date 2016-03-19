@@ -24,6 +24,7 @@ public class StudentDaoImpl extends GenericDaoImpl<Student, Long> implements Stu
 
 	@Override
 	public Student saveStudent(Student student) {
+		student.setEncodedPassword(encoder.encode(student.getTransientPassword()));
 		super.saveEntity(student);
 		return student;
 	}

@@ -14,7 +14,7 @@ public class Admin extends User {
 	public Admin(User user) {
 		this.setId(user.getId());
 		this.setUsername(user.getUsername());
-		this.setPassword(user.getPassword());
+		this.setTransientPassword(user.getTransientPassword());
 		this.setName(user.getName());
 		this.setLastName(user.getLastName());
 	}

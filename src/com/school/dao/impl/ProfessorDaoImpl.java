@@ -21,6 +21,7 @@ public class ProfessorDaoImpl extends GenericDaoImpl<Professor, Long> implements
 	
 	@Override
 	public Professor saveProfessor(Professor prof) {
+		prof.setEncodedPassword(encoder.encode(prof.getTransientPassword()));
 		super.saveEntity(prof);
 		return prof;
 	}

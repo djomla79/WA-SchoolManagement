@@ -10,36 +10,22 @@
 	<link href="<spring:url value='/resources/css/style1.css'/>" type="text/css" rel="stylesheet" />
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<title>Home Page</title>
+<title>Messages</title>
 </head>
 <body>
-	
+
 	<jsp:include page="../fragments/home-navbar.jsp" />
 	
-	<div class="container1">
-			<h3 class="header">Welcome to SchoolManagement Application!</h3>
-		<div class="header">
-			<sec:authorize access="hasRole('ADMIN')">
-				<h3>Administrator</h3>
-				<h4><c:url value="/admin" var="url" />
-				<a href="${url}">Your account</a></h4>
-			</sec:authorize>
+	<div class="container">
+		<div class="header1">
+		<div id="messageError">
+			<c:out value="${messageError}" />
 		</div>
-		<div class="header">
-			<sec:authorize access="hasRole('PROFESSOR')">
-				<h3>Professor</h3>
-				<h4><c:url value="/accountProf" var="url" />
-				<a href="${url}">Your account</a></h4>
-			</sec:authorize>
+		<div id="messageOk">
+			<c:out value="${messageOk}" />
 		</div>
-		<div class="header">
-			<sec:authorize access="hasRole('STUDENT')">
-				<h3>Student</h3>
-				<h4><c:url value="/accountStudent" var="url" />
-				<a href="${url}">Your account</a></h4>
-			</sec:authorize>
 		</div>
 	</div>
-	
+
 </body>
 </html>

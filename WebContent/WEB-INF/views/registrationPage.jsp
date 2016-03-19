@@ -19,15 +19,20 @@
 		<div class="header1"><h5>Register Admin</h5></div>
       		<spring:url value="/registerAdmin" var="formUrl" />
     		<form:form modelAttribute="user" action="${formUrl}" method="POST">
+		          
 		          <div>
-					  <label>Name: </label><br />
-			          <form:input path="name" name="name" type="text" /><br />
-			          <label>Last Name: </label><br />
-			          <form:input type="text" path="lastName" name="lastName" /><br />
-			          <label>Username: </label><br />
-			          <form:input type="text" path="username" name="username" /><br />
-			          <label>Password: </label><br />
-			          <form:input type="text" path="password" name="password" /><br />
+					<label>Name: </label><br />
+		          	<form:input type="text" path="name" name="name" placeholder="Name" class="required" title="Please, enter your first name." /><br />
+		          	<form:errors path="name" cssClass="error"></form:errors><br />
+			        <label>Last Name: </label><br />
+			        <form:input type="text" path="lastName" name="lastName" placeholder="Last Name" class="required" title="Please, enter your last name." /><br />
+			        <form:errors path="lastName" cssClass="error"></form:errors><br />
+			        <label>Username: </label><br />
+			        <form:input type="text" path="username" name="username" placeholder="Username" /><br />
+			        <form:errors path="username" cssClass="error"></form:errors><br />
+			        <label>Password: </label><br />
+			        <form:input type="password" path="transientPassword" name="transientPassword" placeholder="Password" /><br />
+			        <form:errors path="transientPassword" cssClass="error"></form:errors><br />
 			          
 			          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		          </div><br />
@@ -45,16 +50,20 @@
 	      <form:form modelAttribute="user" action="${formUrl}" method="POST">
 	          
 	            <div>
-				    <label>Name: </label><br />
-		            <form:input path="name" name="name" type="text" /><br />
-		            <label>Last Name: </label><br />
-		            <form:input type="text" path="lastName" name="lastName" /><br />
-		            <label>Username: </label><br />
-		            <form:input type="text" path="username" name="username" /><br />
-		            <label>Password: </label><br />
-		            <form:input type="text" path="password" name="password" /><br />
+					<label>Name: </label><br />
+		          	<form:input type="text" path="name" name="name" placeholder="Name" class="required" title="Please, enter your first name." /><br />
+		          	<form:errors path="name" cssClass="error"></form:errors><br />
+			        <label>Last Name: </label><br />
+			        <form:input type="text" path="lastName" name="lastName" placeholder="Last Name" class="required" title="Please, enter your last name." /><br />
+			        <form:errors path="lastName" cssClass="error"></form:errors><br />
+			        <label>Username: </label><br />
+			        <form:input type="text" path="username" name="username" placeholder="Username" /><br />
+			        <form:errors path="username" cssClass="error"></form:errors><br />
+			        <label>Password: </label><br />
+			        <form:input type="password" path="transientPassword" name="transientPassword" placeholder="Password" /><br />
+			        <form:errors path="transientPassword" cssClass="error"></form:errors><br />
 		          
-		            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	            </div><br />
 	          
 	            <button class="btn btn-sm btn-primary" type="submit">Submit</button> 
@@ -68,22 +77,18 @@
 	        <form:form modelAttribute="user" action="${formUrl}" method="POST">
 	          
 	              <div>
-	<!--           	  <label>Name: </label><br /> -->
-	<!--           	  <input type="text" name="name" placeholder="Name" class="required" title="Please, enter your first name." /><br /> -->
-	<!-- 	          <label>Last Name: </label><br /> -->
-	<!-- 	          <input type="text" name="lastName" placeholder="Last Name" class="required" title="Please, enter your last name." /><br /> -->
-	<!-- 	          <label>Username: </label><br /> -->
-	<!-- 	          <input type="text" name="username" placeholder="Username" /><br /> -->
-	<!-- 	          <label>Password: </label><br /> -->
-	<!-- 	          <input type="password" name="password" placeholder="Password" /><br /> -->
-				      <label>Name: </label><br />
-		              <form:input path="name" name="name" type="text" /><br />
-		              <label>Last Name: </label><br />
-		              <form:input type="text" path="lastName" name="lastName" /><br />
-		              <label>Username: </label><br />
-		              <form:input type="text" path="username" name="username" /><br />
-		              <label>Password: </label><br />
-		              <form:input type="text" path="password" name="password" /><br />
+					<label>Name: </label><br />
+		          	<form:input type="text" path="name" name="name" placeholder="Name" class="required" title="Please, enter your first name." /><br />
+		          	<form:errors path="name" cssClass="error"></form:errors><br />
+			        <label>Last Name: </label><br />
+			        <form:input type="text" path="lastName" name="lastName" placeholder="Last Name" class="required" title="Please, enter your last name." /><br />
+			        <form:errors path="lastName" cssClass="error"></form:errors><br />
+			        <label>Username: </label><br />
+			        <form:input type="text" path="username" name="username" placeholder="Username" /><br />
+			        <form:errors path="username" cssClass="error"></form:errors><br />
+			        <label>Password: </label><br />
+			        <form:input type="password" path="transientPassword" name="transientPassword" placeholder="Password" /><br />
+			        <form:errors path="transientPassword" cssClass="error"></form:errors><br />
 		          
 		              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	              </div><br />
