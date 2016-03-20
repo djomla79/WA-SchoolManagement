@@ -6,7 +6,8 @@ import com.school.beans_model.Subject;
 import com.school.dao.generic.GenericDao;
 
 public interface AbsenceDao extends GenericDao<Absence, Long> {
-
+	
+	/** abstract methods */
 	Long getStudentAbsences(Student student, Subject subject);
 	
 }

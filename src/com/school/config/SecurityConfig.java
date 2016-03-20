@@ -14,11 +14,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
+	/** fields */
 	@Autowired
 	private DataSource dataSource;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-
+	
+	/** methods */
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		

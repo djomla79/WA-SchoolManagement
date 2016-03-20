@@ -14,6 +14,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan("com.school.controllers")
 public class WebConfig extends WebMvcConfigurerAdapter {
 	
+	/** beans and methods */
 	@Bean
 	public InternalResourceViewResolver viewResolver() {
 		

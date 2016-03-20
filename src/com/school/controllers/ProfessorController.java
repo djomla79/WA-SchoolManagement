@@ -1,7 +1,6 @@
 package com.school.controllers;
 
 import java.security.Principal;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,32 +18,32 @@ public class ProfessorController {
 	
 	private static final String PROFESSOR = "professor";
 	
+	/** autowired interfaces */
 	@Autowired
 	private ProfessorDao profDao;
 	@Autowired
 	private SubjectDao subjectDao;
 	
-	
+	/** return professor page with professor and his subjects */
 	@RequestMapping("/accountProf")
 	public String profAccount(Principal principal, Model model) {
 		
-			Professor prof = profDao.getProfessorByUsernameWithSubjects(principal.getName());
-			model.addAttribute("loggedProfessor", prof);
-			
-			return "profAccount";
+		Professor prof = profDao.getProfessorByUsernameWithSubjects(principal.getName());
+		model.addAttribute("loggedProfessor", prof);
+		
+		return "profAccount";
 	}
-	
+	/** return info page with professor and his subjects */
 	@RequestMapping(value="/getProfessorWithSubjects/{profId}")
 	public String getProfessorWithSubjects(@PathVariable Long profId, Model model) {
 		
 		Professor prof = profDao.getProfessorWithSubjectsById(profId);
-		List<Subject> subjects = prof.getSubjects();
 		model.addAttribute(PROFESSOR, prof);
-		model.addAttribute("subjects", subjects);
+		model.addAttribute("subjects", prof.getSubjects());
 		
 		return "professor";
 	}
-	
+	/** return info page with subject and its professor */
 	@RequestMapping(value="/getSubject/{subjectId}")
 	public String getSubject(@PathVariable Long subjectId, Model model) {
 		

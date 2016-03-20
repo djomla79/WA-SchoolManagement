@@ -10,6 +10,7 @@ public class Grade extends BaseEntity {
 	
 	private static final long serialVersionUID = 1L;
 	
+	/** fields */
 	@ManyToOne
 	private Subject subject;
 	@ManyToOne
@@ -22,10 +23,11 @@ public class Grade extends BaseEntity {
 		/** Empty default constructor */
 	}
 	
+	/** Geters and seters */
 	public Subject getSubject() {
 		return subject;
 	}
-
+	
 	public void setSubject(Subject subject) {
 		this.subject = subject;
 	}

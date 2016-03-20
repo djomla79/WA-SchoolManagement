@@ -29,6 +29,7 @@ public class StudentController {
 	public static final String ACCOUNT_PROFESSOR = "redirect:/accountProf";
 	public static final String STUDENT_GRADING = "studentGrading";
 	
+	/** autowired interfaces */
 	@Autowired
 	private StudentDao studentDao;
 	@Autowired
@@ -38,7 +39,9 @@ public class StudentController {
 	@Autowired
 	private AbsenceDao absenceDao;
 	
-	
+	/** return student page with student and his subjects
+	 *  total average grades of all subjects 
+	 *  and subjects that this student doesn't have */
 	@RequestMapping("/accountStudent")
 	public String studentAccount(Principal principal, Model model) {
 		
@@ -50,7 +53,7 @@ public class StudentController {
 		
 		return "studentAccount";
 	}
-	
+	/** return page with subject and all its students */
 	@RequestMapping(value="/getSubjectWithStudents/{subjectId}")
 	public String getSubjectWithStudents(@PathVariable Long subjectId, Model model) {
 		
@@ -60,7 +63,8 @@ public class StudentController {
 		
 		return "allStudents";
 	}
-	
+	/** return info page of student,
+	 *  one of his subject, all grades and grades average value of this subject */
 	@RequestMapping(value="/getStudentWithSubjectAndGrades", params={"student", "subject"})
 	public String getStudentWithSubjects(@RequestParam("student") Long studentId,
 			@RequestParam("subject") Long subjectId, Model model) {
@@ -76,7 +80,7 @@ public class StudentController {
 		
 		return "studentInfo";
 	}
-	
+	/** returns page with student and one of his subject */
 	@RequestMapping(value="/getStudentWithSubjectAndAddGrade", params={"student", "subject"})
 	public String getStudentWithSubjectsAndGrades(@RequestParam("student") Long studentId,
 			@RequestParam("subject") Long subjectId, Model model) {
@@ -89,7 +93,7 @@ public class StudentController {
 		
 		return STUDENT_GRADING;
 	}
-	
+	/** adding subject to student, and student to subject */
 	@RequestMapping(value="/getSubjectToStudent", params={"student", "subject"})
 	public String getSubjectToStudent(@RequestParam("student") Long studentId,
 			@RequestParam("subject") Long subjectId) {
@@ -99,7 +103,8 @@ public class StudentController {
 		
 		return ACCOUNT_STUDENT;
 	}
-	
+	/** setting student-id and subject-id to subject-request, 
+	 *  and adding that subject-request to student */
 	@RequestMapping(value="/sendSubjectRequest", params={"student", "subject"})
 	public String sendSubjectRequest(@RequestParam("student") Long studentId,
 			@RequestParam("subject") Long subjectId) {
@@ -116,7 +121,8 @@ public class StudentController {
 		
 		return ACCOUNT_STUDENT;
 	}
-	
+	/** setting subject, student and gradeValue to grade,
+	 *  and adding that grade to student */
 	@RequestMapping(value="/addGradeToStudent",
 			params={"student", "subject", "gradeValue"},
 			method=RequestMethod.POST)
@@ -139,7 +145,8 @@ public class StudentController {
 		}
 		
 	}
-	
+	/** setting subject, student and counter to absence,
+	 *  and adding that absence to student */
 	@RequestMapping(value="/addAbsenceToStudent", params={"student", "subject"})
 	public String addAbsenceToStudent(@RequestParam("student") Long studentId,
 			@RequestParam("subject") Long subjectId) {
@@ -154,7 +161,9 @@ public class StudentController {
 		
 		return ACCOUNT_PROFESSOR;
 	}
-	
+	/** return page with student, his subject,
+	 *  and grades, absences of its subject,
+	 *  and grades average value of this subject */
 	@RequestMapping(value="/getGradesAndAbsences", params={"student", "subject"})
 	public String getGrades(@RequestParam("student") Long studentId , 
 			@RequestParam("subject") Long subjectId, Model model) {

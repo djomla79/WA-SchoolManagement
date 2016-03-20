@@ -8,6 +8,7 @@ import com.school.dao.generic.GenericDao;
 
 public interface StudentDao extends GenericDao<Student, Long> {
 	
+	/** abstract methods */
 	Student saveStudent(Student student);
 	
 	Student updateStudent(Student student);
@@ -19,8 +20,6 @@ public interface StudentDao extends GenericDao<Student, Long> {
 	Student getStudentWithGrades(String username);
 
 	Student getStudentWithSubjectsAndGrades(String username);
-
-	boolean isStudentExists(String username);
 
 	Student getStudentWithSubjectsById(Long studentId);
 

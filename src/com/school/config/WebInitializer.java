@@ -3,7 +3,8 @@ package com.school.config;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-
+	
+	/** methods */
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		return new Class[]{ RootConfig.class };

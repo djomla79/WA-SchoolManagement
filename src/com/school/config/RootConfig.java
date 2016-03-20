@@ -15,6 +15,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 )
 public class RootConfig {
 	
+	/** bean */
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new StandardPasswordEncoder();

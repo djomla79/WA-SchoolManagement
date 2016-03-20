@@ -13,7 +13,8 @@ import com.school.commons.BaseEntity;
 public class Subject extends BaseEntity {
 	
 	private static final long serialVersionUID = 1L;
-
+	
+	/** fields */
 	private String subjectName;
 	
 	@OneToOne
@@ -23,7 +24,7 @@ public class Subject extends BaseEntity {
 	private List<Student> students = new ArrayList<>();
 	
 	
-	
+	/** Geters and seters */
 	public Professor getProfessor() {
 		return professor;
 	}

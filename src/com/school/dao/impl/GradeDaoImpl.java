@@ -18,11 +18,14 @@ public class GradeDaoImpl extends GenericDaoImpl<Grade, Long> implements GradeDa
 	
 	private static final String STUDENT_ID = "studentId";
 	private static final String SUBJECT_ID = "subjectId";
-
+	
+	/** constructor */
 	public GradeDaoImpl() {
 		super(Grade.class);
 	}
-	
+	/** if it's not null return total average of gradeValue from Grade class,
+	 *  otherwise returns value double 0.0, 
+	 *  where student's student-id matches one in Grade class */
 	@Override
 	public Double getStudentTotalAverageGradesById(Student student) {
 		String hql = "SELECT avg(grade.gradeValue) FROM Grade grade WHERE grade.student=:studentId";
@@ -31,7 +34,9 @@ public class GradeDaoImpl extends GenericDaoImpl<Grade, Long> implements GradeDa
 		/** If it's not checked throws NullPointerException */
 		return query.uniqueResult() != null ? (double) query.uniqueResult() : 0.0;
 	}
-	
+	/** if it's not null return average gradeValue for a subject from Grade class,
+	 *  otherwise returns value double 0.0, 
+	 *  where student's student-id and subject-id match ones in Grade class */
 	@Override
 	public Double getStudentSubjectAverageGradesById(Student student, Subject subject) {
 		String hql = "SELECT avg(grade.gradeValue) FROM Grade grade WHERE grade.student=:studentId AND subject=:subjectId";
@@ -41,7 +46,8 @@ public class GradeDaoImpl extends GenericDaoImpl<Grade, Long> implements GradeDa
 		/** If it's not checked throws NullPointerException */
 		return query.uniqueResult() != null ? (double) query.uniqueResult() : 0.0;
 	}
-	
+	/** return list of grades from Grade class,
+	 *  where student's student-id matches one in Grade class */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Grade> getStudentGradesById(Student student) {
@@ -50,7 +56,8 @@ public class GradeDaoImpl extends GenericDaoImpl<Grade, Long> implements GradeDa
 		query.setLong(STUDENT_ID, student.getId());
 		return query.list();
 	}
-	
+	/** return list of grades from Grade class,
+	 *  where student's student-id and subject-id match ones in Grade class */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Grade> getStudentGradesByStudentAndSubjectId(Student student, Subject subject) {

@@ -11,27 +11,31 @@ import com.school.dao.interfaces.SubjectRequestDao;
 
 @Repository
 public class SubjectRequestDaoImpl extends GenericDaoImpl<SubjectRequest, Long> implements SubjectRequestDao {
-
+	
+	/** constructor */
 	public SubjectRequestDaoImpl() {
 		super(SubjectRequest.class);
 	}
-	
+	/** return subject-request that is saved
+	 *  using save method from GenericDaoImpl class */
 	@Override
 	public SubjectRequest saveSubjectRequest(SubjectRequest request) {
 		super.saveEntity(request);
 		return request;
 	}
-	
+	/** return subject-request that matches
+	 *  the one in SubjectRequest class by id */
 	@Override
 	public SubjectRequest getSubjectRequestById(Long subjectId) {
 		return (SubjectRequest) getSession().get(SubjectRequest.class, subjectId);
 	}
-	
+	/** delete subject-request, 
+	 *  using delete method from GenericDaoImpl class */
 	@Override
 	public void deleteSubjectRequest(SubjectRequest request) {
 		super.deleteEntity(request);
 	}
-	
+	/** return list of all subject-requests from SubjectRequest class */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SubjectRequest> getAll() {

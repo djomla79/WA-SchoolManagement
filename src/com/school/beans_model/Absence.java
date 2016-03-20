@@ -6,10 +6,11 @@ import javax.persistence.OneToOne;
 import com.school.commons.BaseEntity;
 
 @Entity
-public class Absence extends BaseEntity {
+public class Absence extends BaseEntity { 
 	
 	private static final long serialVersionUID = 1L;
-
+	
+	/** fields */
 	private int absenceCounter;
 	
 	@OneToOne

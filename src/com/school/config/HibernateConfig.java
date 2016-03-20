@@ -19,9 +19,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @PropertySource("classpath:com/school/properties/dataSource.properties")
 public class HibernateConfig {
 	
+	/** fields */
 	@Resource
 	private Environment env;
 	
+	/** beans */
 	@Bean
 	public DataSource dataSource() {
 		
@@ -57,7 +59,7 @@ public class HibernateConfig {
 		return data;
 		
 	}
-	
+	/** property */
 	private Properties getHibernateProperties() {
 		
 		Properties props = new Properties();

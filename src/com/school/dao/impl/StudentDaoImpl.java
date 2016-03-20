@@ -17,45 +17,53 @@ import com.school.dao.interfaces.StudentDao;
 @Repository
 @Transactional
 public class StudentDaoImpl extends GenericDaoImpl<Student, Long> implements StudentDao {
-
+	
+	/** constructor */
 	public StudentDaoImpl() {
 		super(Student.class);
 	}
-
+	/** return student that is saved
+	 *  using save method from GenericDaoImpl class,
+	 *  and using PasswordEncoder class to encode password */
 	@Override
 	public Student saveStudent(Student student) {
 		student.setEncodedPassword(encoder.encode(student.getTransientPassword()));
 		super.saveEntity(student);
 		return student;
 	}
-	
+	/** return student that is updated 
+	 *  using update method from GenericDaoImpl class */
 	@Override
 	public Student updateStudent(Student student) {
 		super.updateEntity(student);
 		return student;
 	}
-	
+	/** return student that matches
+	 *  the one in Student class by username */
 	@Override
 	public Student getStudentByUsername(String username) {
 		Criteria criteria = getSession().createCriteria(Student.class);
 		criteria.add(Restrictions.eq("username", username));
 		return (Student) criteria.uniqueResult();
 	}
-	
+	/** return student with subjects that matches
+	 *  the one in Student class by username */
 	@Override
 	public Student getStudentWithSubjects(String username) {
 		Student student = getStudentByUsername(username);
 		Hibernate.initialize(student.getStudentSubjects());
 		return student;
 	}
-	
+	/** return student with grades that matches
+	 *  the one in Student class by username */
 	@Override
 	public Student getStudentWithGrades(String username) {
 		Student student = getStudentByUsername(username);
 		Hibernate.initialize(student.getStudentGrades());
 		return student;
 	}
-	
+	/** return student with subjects and grades that matches
+	 *  the one in Student class by username */
 	@Override
 	public Student getStudentWithSubjectsAndGrades(String username) {
 		Student student = getStudentByUsername(username);
@@ -63,29 +71,24 @@ public class StudentDaoImpl extends GenericDaoImpl<Student, Long> implements Stu
 		Hibernate.initialize(student.getStudentGrades());
 		return student;
 	}
-	
-	@Override
-	public boolean isStudentExists(String username) {
-		Criteria crit = getSession().createCriteria(Student.class);
-		crit.add(Restrictions.eq("username", username));
-		Student student = (Student) crit.uniqueResult();
-		return student != null ? true : false;
-	}
-
+	/** return student with subjects that matches
+	 *  the one in Student class by id */
 	@Override
 	public Student getStudentWithSubjectsById(Long studentId) {
 		Student student = getStudentById(studentId);
 		Hibernate.initialize(student.getStudentSubjects());
 		return student;
 	}
-	
+	/** return student with grades that matches
+	 *  the one in Student class by id */
 	@Override
 	public Student getStudentWithGradesById(Long studentId) {
 		Student student = getStudentById(studentId);
 		Hibernate.initialize(student.getStudentGrades());
 		return student;
 	}
-	
+	/** return student with subjects and grades that matches
+	 *  the one in Student class by id */
 	@Override
 	public Student getStudentWithSubjectsAndGradesById(Long studentId) {
 		Student student = getStudentById(studentId);
@@ -93,21 +96,25 @@ public class StudentDaoImpl extends GenericDaoImpl<Student, Long> implements Stu
 		Hibernate.initialize(student.getStudentGrades());
 		return student;
 	}
-	
+	/** return student with requests that matches
+	 *  the one in Student class by id */
 	@Override
 	public Student getStudentWithRequestsById(Long studentId) {
 		Student student = getStudentById(studentId);
 		Hibernate.initialize(student.getSubjectRequests());
 		return student;
 	}
-	
+	/** using param id, 
+	 *  add subject to student and update that student */
 	@Override
 	public void addSubjectToStudent(Long studentId, Subject subject) {
 		Student student = getStudentById(studentId);
 		student.getStudentSubjects().add(subject);
 		updateStudent(student);
 	}
-	
+	/** get student and subject using param request-id,
+	 *  and add subject to student, remove subject-request 
+	 *  from student and update that student */
 	@Override
 	public void addSubjectToStudentByRequestId(Long subjectRequestId) {
 		
@@ -120,7 +127,9 @@ public class StudentDaoImpl extends GenericDaoImpl<Student, Long> implements Stu
 		updateStudent(student);
 		
 	}
-	
+	/** get subject-request by request-id 
+	 *  get student by subject-request-id
+	 *  remove subject-request from student and update that student */
 	@Override
 	public void removeSubjectRequestByRequestId(Long subjectRequestId) {
 		
@@ -130,26 +139,29 @@ public class StudentDaoImpl extends GenericDaoImpl<Student, Long> implements Stu
 		updateStudent(student);
 		
 	}
-	
+	/** get student by student-id, 
+	 *  add absence to student and update that student */
 	@Override
 	public void addAbsenceToStudent(Long studentId, Absence absence) {
 		Student student = getSession().get(Student.class, studentId);
 		student.getStudentAbsences().add(absence);
 		updateStudent(student);
 	}
-
+	/** get student by student-id. 
+	 *  add grade to student and update that student */
 	@Override
 	public void addGradeToStudent(Long studentId, Grade grade) {
 		Student student = getSession().get(Student.class, studentId);
 		student.getStudentGrades().add(grade);
 		updateStudent(student);
 	}
-	
+	/** return student using param student-id */
 	@Override
 	public Student getStudentById(Long studentId) {
 		return (Student) getSession().get(Student.class, studentId);
 	}
-
+	/** return student that is merged
+	 *  using merge method from GenericDaoImpl class */
 	@Override
 	public Student mergeStudent(Student student) {
 		super.mergeEntity(student);

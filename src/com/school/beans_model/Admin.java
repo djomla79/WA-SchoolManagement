@@ -10,7 +10,7 @@ public class Admin extends User {
 	public Admin() {
 		/** Empty default constructor */
 	}
-	
+	/** Constructor with params */
 	public Admin(User user) {
 		this.setId(user.getId());
 		this.setUsername(user.getUsername());

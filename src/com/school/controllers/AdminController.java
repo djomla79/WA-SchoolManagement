@@ -25,6 +25,7 @@ public class AdminController {
 	public static final String ADMIN_PAGE = "redirect:/admin";
 	public static final String ADD_SUBJECT = "addSubject";
 	
+	/** autowired interfaces */
 	@Autowired
 	private AdminDao adminDao;
 	@Autowired
@@ -36,6 +37,7 @@ public class AdminController {
 	@Autowired
 	private SubjectRequestDao subjectRequestDao;
 	
+	/** returns admin page with user-admin and all professors and subject-requests */
 	@RequestMapping("/admin")
 	public String adminPage(Principal principal, Model model) {
 		
@@ -50,7 +52,7 @@ public class AdminController {
 	public String addSubject(@ModelAttribute("subject") Subject subject) {
 		return ADD_SUBJECT;
 	}
-	
+	/** saving new subject */
 	@RequestMapping(value="/addSubject", method=RequestMethod.POST)
 	public String subjectAdded(Subject subject) {
 		if(subjectDao.saveSubject(subject) != null) {
@@ -58,7 +60,7 @@ public class AdminController {
 		}
 		return ADD_SUBJECT;
 	}
-	
+	/** returns all professors with their subjects */
 	@RequestMapping("/addSubjectToProf")
 	public String addSubjectToProf(Model model) {
 		
@@ -67,7 +69,7 @@ public class AdminController {
 		
 		return "addSubjectsToProfessor";
 	}
-	
+	/** adding subject to professor and professor to subject */
 	@RequestMapping(value="/addSubjectToProfessor", params={"professor", "subject"})
 	public String addSubjectToProfessor(@RequestParam("professor") Long profId, @RequestParam("subject") Long subjectId) {
 		
@@ -76,7 +78,8 @@ public class AdminController {
 		
 		return ADMIN_PAGE;			
 	}
-	
+	/** adding subject to student by subject-request 
+	 *  sent by student then deleting that subject-request */
 	@RequestMapping(value="/acceptSubjectRequest/{subjectRequestId}")
 	public String acceptSubjectRequest(@PathVariable Long subjectRequestId) {
 	
@@ -87,7 +90,7 @@ public class AdminController {
 	
 	   return ADMIN_PAGE;
 	}
-	
+	/** Declining and removing subject-request sent by student */
 	@RequestMapping(value="/declineSubjectRequest/{subjectRequestId}")
 	public String declineSubjectRequest(@PathVariable Long subjectRequestId) {
 	

@@ -8,7 +8,8 @@ import com.school.beans_model.Subject;
 import com.school.dao.generic.GenericDao;
 
 public interface SubjectDao extends GenericDao<Subject, Long> {
-
+	
+	/** abstract methods */
 	Subject saveSubject(Subject subject);
 
 	Subject getSubjectByName(String subjectName);

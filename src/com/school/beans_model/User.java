@@ -19,7 +19,7 @@ import com.school.commons.BaseEntity;
 public class User extends BaseEntity {
 	
 	private static final long serialVersionUID = 1L;
-	
+	/** fields */
 	@NotBlank
 	@Size(min=3, max=16)
 	@Pattern(regexp = "^[A-Z][a-z]{3,16}$")
@@ -47,14 +47,14 @@ public class User extends BaseEntity {
 	public User() {
 		/** Empty default constructor */
 	}
-	
-	public User(String name, String lastName, String username, String password, boolean enabled, String authority) {
+	/** Constructor with params */
+	public User(String name, String lastName, String username, String password) {
 		this.name = name;
 		this.lastName = lastName;
 		this.username = username;
 		this.transientPassword = password;
 	}
-	
+	/** Geters and seters */
 	public String getName() {
 		return name;
 	}

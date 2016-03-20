@@ -13,11 +13,13 @@ import com.school.dao.interfaces.AbsenceDao;
 @Repository
 @Transactional
 public class AbsenceDaoImpl extends GenericDaoImpl<Absence, Long> implements AbsenceDao {
-
+	
+	/** constructor */
 	public AbsenceDaoImpl() {
 		super(Absence.class);
 	}
-	
+	/** return count of all absenceCounter from Absence class,
+	 *  where student's subject-id and student-id matches one in Absence class */
 	@Override
 	public Long getStudentAbsences(Student student, Subject subject) {
 		String hql = "SELECT count(absenceCounter) FROM Absence WHERE student=:studentId AND subject=:subjectId";

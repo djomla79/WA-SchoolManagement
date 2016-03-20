@@ -15,26 +15,28 @@ import com.school.commons.BaseEntity;
 @Transactional
 public abstract class GenericDaoImpl<E extends BaseEntity, K extends Serializable> implements GenericDao<E, K> {
 	
+	/** field */
 	private Class<E> persistentClass;
 	
+	/** autowired classes */
 	@Autowired
 	public SessionFactory sessionFactory;
 	@Autowired
 	public PasswordEncoder encoder;
 	
-	
+	/** Constructor with parameter */
 	public GenericDaoImpl(Class<E> persistentClass) {
 		this.persistentClass = persistentClass;
 	}
-	
+	/** method that returns current session */
 	public Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
-	
+	/** geter */
 	public Class<E> getPersistentClass() {
 		return persistentClass;
 	}
-	
+	/** Overridden methods */
 	@Override
 	public E saveEntity(E entity) {
 		getSession().save(entity);

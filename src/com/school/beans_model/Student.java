@@ -14,7 +14,8 @@ import javax.persistence.OneToMany;
 public class Student extends User {
 	
 	private static final long serialVersionUID = 1L;
-
+	
+	/** fields */
 	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="STUDENT_SUBJECT", 
 	   		   joinColumns=@JoinColumn(name="student_id"),
@@ -33,7 +34,7 @@ public class Student extends User {
 	public Student() {
 		/** Empty default constructor */
 	}
-	
+	/** Constructor with params */
 	public Student(User user) {
 		this.setId(user.getId());
 		this.setName(user.getName());
@@ -42,7 +43,7 @@ public class Student extends User {
 		this.setTransientPassword(user.getTransientPassword());
 	}
 	
-	
+	/** Geters and seters */
 	public List<SubjectRequest> getSubjectRequests() {
 		return subjectRequests;
 	}

@@ -34,9 +34,9 @@ public class MyController {
 	public static final String MESSAGE_OK = "messageOk";
 	public static final String SUCCES_REGISTER = " is successfully registered.";
 	public static final String DUPLICATE_KEY = "DuplicateKey.user.username";
-	public static final String ADMIN_PAGE = "redirect:/admin";
 	public static final String REGISTRATION_PAGE = "registrationPage";
 	
+	/** autowired interfaces */
 	@Autowired
 	private ProfessorDao profDao;
 	@Autowired
@@ -56,7 +56,7 @@ public class MyController {
 	public String showLogin() {
 		return LOGIN;
 	}
-	
+	/** logout method */
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -70,11 +70,11 @@ public class MyController {
 	public String showRegistrationPage(@ModelAttribute User user) {
 		return REGISTRATION_PAGE;
 	}
-	
+	/** registering admin */
 	@RequestMapping(value="/registerAdmin", method=RequestMethod.POST)
 	public String registerAdmin(@Valid User user, BindingResult result, Model model) {
 		
-		if (!userDao.isUserAlreadyExists(user.getUsername())) {
+		if (userDao.isUserAlreadyExists(user.getUsername())) {
 			result.rejectValue(USERNAME, DUPLICATE_KEY);
 			return REGISTRATION_PAGE;
 		}
@@ -88,11 +88,11 @@ public class MyController {
 		}
 		return REGISTRATION_PAGE;
 	}
-	
+	/** registering professor */
 	@RequestMapping(value="/registerProfessor", method=RequestMethod.POST)
 	public String registerProfessor(@Valid User user, BindingResult result, Model model) {
 		
-		if (!userDao.isUserAlreadyExists(user.getUsername())) {
+		if (userDao.isUserAlreadyExists(user.getUsername())) {
 			result.rejectValue(USERNAME, DUPLICATE_KEY);
 			return REGISTRATION_PAGE;
 		}
@@ -106,12 +106,11 @@ public class MyController {
 		}
 		return REGISTRATION_PAGE;
 	}
-	
-
+	/** registering student */
 	@RequestMapping(value="/registerStudent", method=RequestMethod.POST)
 	public String registerStudent(@Valid User user, BindingResult result, Model model) {
 		
-		if (!userDao.isUserAlreadyExists(user.getUsername())) {
+		if (userDao.isUserAlreadyExists(user.getUsername())) {
 			result.rejectValue(USERNAME, DUPLICATE_KEY);
 			return REGISTRATION_PAGE;
 		}

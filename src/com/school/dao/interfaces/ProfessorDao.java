@@ -7,7 +7,8 @@ import com.school.beans_model.Subject;
 import com.school.dao.generic.GenericDao;
 
 public interface ProfessorDao extends GenericDao<Professor, Long> {
-
+	
+	/** abstract methods */
 	Professor saveProfessor(Professor prof);
 
 	Professor getProfessorByUsername(String username);

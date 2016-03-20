@@ -9,10 +9,11 @@ public class SubjectRequest extends BaseEntity {
 	
 private static final long serialVersionUID = 1L;
 	
+	/** fields */
 	private Long studentId;
 	private Long subjectId;
 	
-	
+	/** Geters and seters */
 	public Long getStudentId() {
 		return studentId;
 	}
